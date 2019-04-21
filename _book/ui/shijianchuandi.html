@@ -257,7 +257,54 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <p>shijianchuandi.md</p>
+                                <h3 id="131uiview&#x548C;calayer">1.3.1UIView&#x548C;CALayer</h3>
+<p>UIView&#x663E;&#x793A;&#x5728;&#x5C4F;&#x5E55;&#x4E0A;&#x5F52;&#x529F;&#x4E8E;CALayer&#xFF0C;&#x901A;&#x8FC7;&#x8C03;&#x7528;drawRect&#x65B9;&#x6CD5;&#x6765;&#x6E32;&#x67D3;&#x81EA;&#x8EAB;&#x7684;&#x5185;&#x5BB9;&#xFF0C;&#x8C03;&#x8282;CALayer&#x5C5E;&#x6027;&#x53EF;&#x4EE5;&#x8C03;&#x6574;UIView&#x7684;&#x5916;&#x89C2;&#xFF0C;UIView&#x7EE7;&#x627F;&#x81EA;UIResponder&#xFF0C;&#x6BD4;&#x8D77;CALayer&#x53EF;&#x4EE5;&#x54CD;&#x5E94;&#x7528;&#x6237;&#x4E8B;&#x4EF6;&#xFF0C;Xcode6&#x4E4B;&#x540E;&#x53EF;&#x4EE5;&#x65B9;&#x4FBF;&#x7684;&#x901A;&#x8FC7;&#x89C6;&#x56FE;&#x8C03;&#x8BD5;&#x529F;&#x80FD;&#x67E5;&#x770B;&#x56FE;&#x5C42;&#x4E4B;&#x95F4;&#x7684;&#x5173;&#x7CFB;
+UIView&#x662F;iOS&#x7CFB;&#x7EDF;&#x4E2D;&#x754C;&#x9762;&#x5143;&#x7D20;&#x7684;&#x57FA;&#x7840;&#xFF0C;&#x6240;&#x6709;&#x7684;&#x754C;&#x9762;&#x5143;&#x7D20;&#x90FD;&#x7EE7;&#x627F;&#x81EA;&#x5B83;&#x3002;&#x5B83;&#x5185;&#x90E8;&#x662F;&#x7531;Core Animation&#x6765;&#x5B9E;&#x73B0;&#x7684;&#xFF0C;&#x5B83;&#x771F;&#x6B63;&#x7684;&#x7ED8;&#x56FE;&#x90E8;&#x5206;&#xFF0C;&#x662F;&#x7531;&#x4E00;&#x4E2A;&#x53EB;CALayer(Core Animation Layer)&#x7684;&#x7C7B;&#x6765;&#x7BA1;&#x7406;&#x3002;UIView&#x672C;&#x8EAB;&#xFF0C;&#x66F4;&#x50CF;&#x662F;&#x4E00;&#x4E2A;CALayer&#x7684;&#x7BA1;&#x7406;&#x5668;&#xFF0C;&#x8BBF;&#x95EE;&#x5B83;&#x7684;&#x8DDF;&#x7ED8;&#x56FE;&#x548C;&#x5750;&#x6807;&#x6709;&#x5173;&#x7684;&#x5C5E;&#x6027;&#xFF0C;&#x5982;frame&#xFF0C;bounds&#x7B49;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x5185;&#x90E8;&#x90FD;&#x662F;&#x8BBF;&#x95EE;&#x5B83;&#x6240;&#x5728;CALayer&#x7684;&#x76F8;&#x5173;&#x5C5E;&#x6027;
+UIView&#x6709;&#x4E2A;layer&#x5C5E;&#x6027;&#xFF0C;&#x53EF;&#x4EE5;&#x8FD4;&#x56DE;&#x5B83;&#x7684;&#x4E3B;CALayer&#x5B9E;&#x4F8B;&#xFF0C;UIView&#x6709;&#x4E00;&#x4E2A;layerClass&#x65B9;&#x6CD5;&#xFF0C;&#x8FD4;&#x56DE;&#x4E3B;layer&#x6240;&#x4F7F;&#x7528;&#x7684;&#x7C7B;&#xFF0C;UIView&#x7684;&#x5B50;&#x7C7B;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x91CD;&#x8F7D;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#xFF0C;&#x6765;&#x8BA9;UIView&#x4F7F;&#x7528;&#x4E0D;&#x540C;&#x7684;CALayer&#x6765;&#x663E;&#x793A;&#xFF0C;&#x5982;&#xFF1A;</p>
+<pre><code class="lang-objective-c">- (class) layerClass {
+    // &#x4F7F;&#x67D0;&#x4E2A;UIView&#x7684;&#x5B50;&#x7C7B;&#x4F7F;&#x7528;GL&#x6765;&#x8FDB;&#x884C;&#x7ED8;&#x5236;
+    return ([CAEAGLLayer class]);
+}
+</code></pre>
+<p>UIView&#x7684;CALayer&#x7C7B;&#x4F3C;UIView&#x7684;&#x5B50;View&#x6811;&#x5F62;&#x7ED3;&#x6784;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x5411;&#x5B83;&#x7684;layer&#x4E0A;&#x6DFB;&#x52A0;&#x5B50;layer&#xFF0C;&#x6765;&#x5B8C;&#x6210;&#x67D0;&#x4E9B;&#x7279;&#x6B8A;&#x7684;&#x663E;&#x793A;&#x3002;&#x4F8B;&#x5982;&#x4E0B;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x4F1A;&#x5728;&#x76EE;&#x6807;View&#x4E0A;&#x6577;&#x4E0A;&#x4E00;&#x5C42;&#x9ED1;&#x8272;&#x7684;&#x900F;&#x660E;&#x8584;&#x819C;&#x3002;</p>
+<pre><code class="lang-objective-c">grayCover = [[CALayer alloc]init];
+grayCover.backgroudColor = [[UIColor blackColor]colorWithAlphaComponent:0.2].CGColor;
+[self.layer addSubLayer:grayCover];
+</code></pre>
+<p>&#x8865;&#x5145;&#x90E8;&#x5206;&#xFF0C;&#x8FD9;&#x90E8;&#x5206;&#x6709;&#x6DF1;&#x5EA6;&#x4E86;&#xFF0C;&#x5927;&#x81F4;&#x4E86;&#x89E3;&#x4E00;&#x4E0B;&#x5427;&#xFF0C;UIView&#x7684;layer&#x6811;&#x5F62;&#x5728;&#x7CFB;&#x7EDF;&#x5185;&#x90E8;&#x88AB;&#x7CFB;&#x7EDF;&#x7EF4;&#x62A4;&#x7740;&#x4E09;&#x4EFD;copy
+&#x903B;&#x8F91;&#x6811;&#xFF0C;&#x5C31;&#x662F;&#x4EE3;&#x7801;&#x91CC;&#x53EF;&#x4EE5;&#x64CD;&#x7EB5;&#x7684;&#xFF0C;&#x4F8B;&#x5982;&#x66F4;&#x6539;layer&#x7684;&#x5C5E;&#x6027;&#x7B49;&#x7B49;&#x5C31;&#x5728;&#x8FD9;&#x4E00;&#x4EFD;
+&#x52A8;&#x753B;&#x6811;&#xFF0C;&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x4E2D;&#x95F4;&#x5C42;&#xFF0C;&#x7CFB;&#x7EDF;&#x6B63;&#x662F;&#x5728;&#x8FD9;&#x4E00;&#x5C42;&#x4E0A;&#x66F4;&#x6539;&#x5C5E;&#x6027;&#xFF0C;&#x8FDB;&#x884C;&#x5404;&#x79CD;&#x6E32;&#x67D3;&#x64CD;&#x4F5C;
+&#x663E;&#x793A;&#x6811;&#xFF0C;&#x8FD9;&#x68F5;&#x6811;&#x7684;&#x5185;&#x5BB9;&#x662F;&#x5F53;&#x524D;&#x6B63;&#x88AB;&#x663E;&#x793A;&#x5728;&#x5C4F;&#x5E55;&#x4E0A;&#x7684;&#x5185;&#x5BB9;
+&#x8FD9;&#x4E09;&#x68F5;&#x6811;&#x7684;&#x903B;&#x8F91;&#x7ED3;&#x6784;&#x90FD;&#x662F;&#x4E00;&#x6837;&#x7684;&#xFF0C;&#x533A;&#x522B;&#x53EA;&#x6709;&#x5404;&#x81EA;&#x7684;&#x5C5E;&#x6027;</p>
+<h3 id="132&#x4E8B;&#x4EF6;&#x4F20;&#x9012;">1.3.2&#x4E8B;&#x4EF6;&#x4F20;&#x9012;</h3>
+<pre><code class="lang-objective-c">// &#x6B64;&#x65B9;&#x6CD5;&#x8FD4;&#x56DE;&#x7684;View&#x662F;&#x672C;&#x6B21;&#x70B9;&#x51FB;&#x4E8B;&#x4EF6;&#x9700;&#x8981;&#x7684;&#x6700;&#x4F73;View
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
+
+// &#x5224;&#x65AD;&#x4E00;&#x4E2A;&#x70B9;&#x662F;&#x5426;&#x843D;&#x5728;&#x8303;&#x56F4;&#x5185;
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event
+</code></pre>
+<p>1.&#x5F53;iOS&#x7A0B;&#x5E8F;&#x4E2D;&#x53D1;&#x751F;&#x89E6;&#x6478;&#x4E8B;&#x4EF6;&#x540E;&#xFF0C;&#x7CFB;&#x7EDF;&#x4F1A;&#x5C06;&#x4E8B;&#x4EF6;&#x52A0;&#x5165;&#x5230;UIApplication&#x7BA1;&#x7406;&#x7684;&#x4E00;&#x4E2A;&#x4EFB;&#x52A1;&#x961F;&#x5217;&#x4E2D;
+2.UIApplication&#x5C06;&#x5904;&#x4E8E;&#x4EFB;&#x52A1;&#x961F;&#x5217;&#x6700;&#x524D;&#x7AEF;&#x7684;&#x4E8B;&#x4EF6;&#x5411;&#x4E0B;&#x5206;&#x53D1;&#x3002;&#x5373;UIWindow&#x3002;
+3.UIWindow&#x5C06;&#x4E8B;&#x4EF6;&#x5411;&#x4E0B;&#x5206;&#x53D1;&#xFF0C;&#x5373;UIView&#x3002;
+4.UIView&#x9996;&#x5148;&#x770B;&#x81EA;&#x5DF1;&#x662F;&#x5426;&#x80FD;&#x5904;&#x7406;&#x4E8B;&#x4EF6;&#xFF0C;&#x89E6;&#x6478;&#x70B9;&#x662F;&#x5426;&#x5728;&#x81EA;&#x5DF1;&#x8EAB;&#x4E0A;&#x3002;&#x5982;&#x679C;&#x80FD;&#xFF0C;&#x90A3;&#x4E48;&#x7EE7;&#x7EED;&#x5BFB;&#x627E;&#x5B50;&#x89C6;&#x56FE;&#x3002;
+5.&#x904D;&#x5386;&#x5B50;&#x63A7;&#x4EF6;&#xFF0C;&#x91CD;&#x590D;&#x4EE5;&#x4E0A;&#x4E24;&#x6B65;&#x3002;
+6.&#x5982;&#x679C;&#x6CA1;&#x6709;&#x627E;&#x5230;&#xFF0C;&#x90A3;&#x4E48;&#x81EA;&#x5DF1;&#x5C31;&#x662F;&#x4E8B;&#x4EF6;&#x5904;&#x7406;&#x8005;&#x3002;&#x5982;&#x679C;
+7.&#x5982;&#x679C;&#x81EA;&#x5DF1;&#x4E0D;&#x80FD;&#x5904;&#x7406;&#xFF0C;&#x90A3;&#x4E48;&#x4E0D;&#x505A;&#x4EFB;&#x4F55;&#x5904;&#x7406;&#x3002;
+&#x5176;&#x4E2D; UIView&#x4E0D;&#x63A5;&#x53D7;&#x4E8B;&#x4EF6;&#x5904;&#x7406;&#x7684;&#x60C5;&#x51B5;&#x4E3B;&#x8981;&#x6709;&#x4EE5;&#x4E0B;&#x4E09;&#x79CD;
+1&#xFF09;alpha &lt;0.01
+2)userInteractionEnabled = NO
+3.hidden &#xFF1D; YES.
+&#x8FD9;&#x4E2A;&#x4ECE;&#x7236;&#x63A7;&#x4EF6;&#x5230;&#x5B50;&#x63A7;&#x4EF6;&#x5BFB;&#x627E;&#x5904;&#x7406;&#x4E8B;&#x4EF6;&#x6700;&#x5408;&#x9002;&#x7684;view&#x7684;&#x8FC7;&#x7A0B;&#xFF0C;&#x5982;&#x679C;&#x7236;&#x89C6;&#x56FE;&#x4E0D;&#x63A5;&#x53D7;&#x4E8B;&#x4EF6;&#x5904;&#x7406;&#xFF08;&#x4E0A;&#x9762;&#x4E09;&#x79CD;&#x60C5;&#x51B5;&#xFF09;&#xFF0C;&#x5219;&#x5B50;&#x89C6;&#x56FE;&#x4E5F;&#x4E0D;&#x80FD;&#x63A5;&#x6536;&#x4E8B;&#x4EF6;&#x3002;&#x4E8B;&#x4EF6;&#x53EA;&#x8981;&#x89E6;&#x6478;&#x4E86;&#x5C31;&#x4F1A;&#x4EA7;&#x751F;&#xFF0C;&#x5173;&#x952E;&#x5728;&#x4E8E;&#x662F;&#x5426;&#x6709;&#x6700;&#x5408;&#x9002;&#x7684;view&#x6765;&#x5904;&#x7406;&#x548C;&#x63A5;&#x6536;&#x4E8B;&#x4EF6;&#xFF0C;&#x5982;&#x679C;&#x904D;&#x5386;&#x5230;&#x6700;&#x540E;&#x90FD;&#x6CA1;&#x6709;&#x6700;&#x5408;&#x9002;&#x7684;view&#x6765;&#x63A5;&#x6536;&#x4E8B;&#x4EF6;&#xFF0C;&#x5219;&#x8BE5;&#x4E8B;&#x4EF6;&#x88AB;&#x5E9F;&#x5F03;&#x3002;</p>
+<p><a href="https://www.jianshu.com/p/410ca78faa98" title="iOS &#x54CD;&#x5E94;&#x94FE;&#x548C;&#x4E8B;&#x4EF6;&#x4F20;&#x9012;" target="_blank">iOS &#x54CD;&#x5E94;&#x94FE;&#x548C;&#x4E8B;&#x4EF6;&#x4F20;&#x9012;</a></p>
+<p><img src="../media/editor/&#x5C4F;&#x5E55;&#x5FEB;&#x7167; 2019-04-15 &#x4E0B;&#x5348;10.43.19_20190415233923114834.png" alt="">
+<img src="../media/editor/&#x5C4F;&#x5E55;&#x5FEB;&#x7167; 2019-04-15 &#x4E0B;&#x5348;10.43.46_20190415234042758556.png" alt=""></p>
+<h3 id="133&#x89C6;&#x56FE;&#x4E8B;&#x4EF6;&#x54CD;&#x5E94;">1.3.3&#x89C6;&#x56FE;&#x4E8B;&#x4EF6;&#x54CD;&#x5E94;</h3>
+<pre><code class="lang-objective-c">    - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
+    - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;
+    - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
+    - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event;
+</code></pre>
+<p><a href="https://www.jianshu.com/p/481465fc4f2d" title="&#x6D45;&#x8C08; iOS &#x4E8B;&#x4EF6;&#x7684;&#x4F20;&#x9012;&#x548C;&#x54CD;&#x5E94;&#x8FC7;&#x7A0B;" target="_blank">&#x6D45;&#x8C08; iOS &#x4E8B;&#x4EF6;&#x7684;&#x4F20;&#x9012;&#x548C;&#x54CD;&#x5E94;&#x8FC7;&#x7A0B;</a></p>
 
                                 
                                 </section>
@@ -301,7 +348,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"1.3UI事件传递与响应","level":"1.2.3","depth":2,"next":{"title":"1.4UI图像显示原理","level":"1.2.4","depth":2,"path":"ui/tuxiangxianshi.md","ref":"ui/tuxiangxianshi.md","articles":[]},"previous":{"title":"1.2数据源同步","level":"1.2.2","depth":2,"path":"ui/shujutongbu.md","ref":"ui/shujutongbu.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"ui/shijianchuandi.md","mtime":"2019-04-21T11:07:39.298Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-21T11:05:20.149Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"1.3UI事件传递与响应","level":"1.2.3","depth":2,"next":{"title":"1.4UI图像显示原理","level":"1.2.4","depth":2,"path":"ui/tuxiangxianshi.md","ref":"ui/tuxiangxianshi.md","articles":[]},"previous":{"title":"1.2数据源同步","level":"1.2.2","depth":2,"path":"ui/shujutongbu.md","ref":"ui/shujutongbu.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"ui/shijianchuandi.md","mtime":"2019-04-21T11:32:10.375Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-21T11:05:20.149Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
