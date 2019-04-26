@@ -1,0 +1,926 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>1.7离屏渲染 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../oc/2.html" />
+    
+    
+    <link rel="prev" href="yibuhuizhi.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    iOS面试题总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="ui.html">
+            
+                <a href="ui.html">
+            
+                    
+                    1、UI视图相关面试题
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="UITableview.html">
+            
+                <a href="UITableview.html">
+            
+                    
+                    1.1UITableview相关面试题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="shujutongbu.html">
+            
+                <a href="shujutongbu.html">
+            
+                    
+                    1.2数据源同步
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="shijianchuandi.html">
+            
+                <a href="shijianchuandi.html">
+            
+                    
+                    1.3UI事件传递与响应
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="tuxiangxianshi.html">
+            
+                <a href="tuxiangxianshi.html">
+            
+                    
+                    1.4UI图像显示原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="kadundiaozheng.html">
+            
+                <a href="kadundiaozheng.html">
+            
+                    
+                    1.5UI卡顿掉帧原因
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="yibuhuizhi.html">
+            
+                <a href="yibuhuizhi.html">
+            
+                    
+                    1.6异步绘制原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.7" data-path="lipingxuanran.html">
+            
+                <a href="lipingxuanran.html">
+            
+                    
+                    1.7离屏渲染
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../oc/2.html">
+            
+                <a href="../oc/2.html">
+            
+                    
+                    2、OC语言
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../oc/2.1.html">
+            
+                <a href="../oc/2.1.html">
+            
+                    
+                    2.1OC相关面试题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../oc/2.2.html">
+            
+                <a href="../oc/2.2.html">
+            
+                    
+                    2.2分类
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../oc/2_4.html">
+            
+                <a href="../oc/2_4.html">
+            
+                    
+                    2.4扩展
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../oc/2.5.html">
+            
+                <a href="../oc/2.5.html">
+            
+                    
+                    2.5代理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="../oc/2.6.html">
+            
+                <a href="../oc/2.6.html">
+            
+                    
+                    2.6通知
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6" data-path="../oc/2.7.html">
+            
+                <a href="../oc/2.7.html">
+            
+                    
+                    2.7KVO
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7" data-path="../oc/2.8.html">
+            
+                <a href="../oc/2.8.html">
+            
+                    
+                    2.8KVC
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.8" data-path="../oc/2.9.html">
+            
+                <a href="../oc/2.9.html">
+            
+                    
+                    2.9属性关键字
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../runtime/3.html">
+            
+                <a href="../runtime/3.html">
+            
+                    
+                    3、Runtime
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../runtime/3.1.html">
+            
+                <a href="../runtime/3.1.html">
+            
+                    
+                    3.1对象、类对象、元类对象
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../runtime/3.2.html">
+            
+                <a href="../runtime/3.2.html">
+            
+                    
+                    3.2消息传递机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../runtime/3.3.html">
+            
+                <a href="../runtime/3.3.html">
+            
+                    
+                    3.3消息转发流程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../runtime/3.4.html">
+            
+                <a href="../runtime/3.4.html">
+            
+                    
+                    3.4Method-Swizzling
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../neicun/4.html">
+            
+                <a href="../neicun/4.html">
+            
+                    
+                    4、内存
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../neicun/4.1.html">
+            
+                <a href="../neicun/4.1.html">
+            
+                    
+                    4.1引用计数表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../neicun/4.2.html">
+            
+                <a href="../neicun/4.2.html">
+            
+                    
+                    4.2弱引用表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../neicun/4.3.html">
+            
+                <a href="../neicun/4.3.html">
+            
+                    
+                    4.3ARC、MRC
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="../neicun/4.4.html">
+            
+                <a href="../neicun/4.4.html">
+            
+                    
+                    4.4循环引用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" data-path="../neicun/4.5.html">
+            
+                <a href="../neicun/4.5.html">
+            
+                    
+                    4.5内存管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../block/5.html">
+            
+                <a href="../block/5.html">
+            
+                    
+                    5、Block
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../block/5.1.html">
+            
+                <a href="../block/5.1.html">
+            
+                    
+                    5.1Block本质
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../block/5.2.html">
+            
+                <a href="../block/5.2.html">
+            
+                    
+                    5.2截获变量特性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="../block/5.3.html">
+            
+                <a href="../block/5.3.html">
+            
+                    
+                    5.3内存管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="../block/5.4.html">
+            
+                <a href="../block/5.4.html">
+            
+                    
+                    5.4循环引用
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../duoxiancheng/6.html">
+            
+                <a href="../duoxiancheng/6.html">
+            
+                    
+                    6、多线程
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../duoxiancheng/6.1.html">
+            
+                <a href="../duoxiancheng/6.1.html">
+            
+                    
+                    6.1GCD、nsoperation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../duoxiancheng/6.2.html">
+            
+                <a href="../duoxiancheng/6.2.html">
+            
+                    
+                    6.2资源共享
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="../duoxiancheng/6.3.html">
+            
+                <a href="../duoxiancheng/6.3.html">
+            
+                    
+                    6.3线程同步
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="../duoxiancheng/6.4.html">
+            
+                <a href="../duoxiancheng/6.4.html">
+            
+                    
+                    6.4SpinLock等
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../runloop/7.md">
+            
+                <span>
+            
+                    
+                    7、RunLoop
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="../runloop/7.1.md">
+            
+                <span>
+            
+                    
+                    7.1事件循环
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="../runloop/7.2.md">
+            
+                <span>
+            
+                    
+                    7.2用户态
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="../runloop/7.3.md">
+            
+                <span>
+            
+                    
+                    7.3核心态
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4" data-path="../runloop/7.4.md">
+            
+                <span>
+            
+                    
+                    7.4常驻线程
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../network/8.md">
+            
+                <span>
+            
+                    
+                    8、网络
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="../network/8.1.md">
+            
+                <span>
+            
+                    
+                    8.1HTTPS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="../network/8.2.md">
+            
+                <span>
+            
+                    
+                    8.2对称加密算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" data-path="../network/8.3.md">
+            
+                <span>
+            
+                    
+                    8.3非对称加密
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" data-path="../network/8.4.md">
+            
+                <span>
+            
+                    
+                    8.4DNS解析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.5" data-path="../network/8.5.md">
+            
+                <span>
+            
+                    
+                    8.5HTTP、TCP
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >1.7离屏渲染</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="17&#x79BB;&#x5C4F;&#x6E32;&#x67D3;">1.7&#x79BB;&#x5C4F;&#x6E32;&#x67D3;</h2>
+<p>&#x79BB;&#x5C4F;&#x6E32;&#x67D3;&#x4E0E;&#x5149;&#x6805;&#x5316;</p>
+<p>&#x2022;&#x79BB;&#x5C4F;&#x6E32;&#x67D3;&#xFF1A;CPU&#x6E32;&#x67D3;&#x53CA;&#x975E;GPU&#x7F13;&#x51B2;&#x533A;&#x7684;&#x6E32;&#x67D3;&#x7EDF;&#x79F0;&#x4E3A;&#x79BB;&#x5C4F;&#x6E32;&#x67D3;&#x3002;</p>
+<p>&#x2022;&#x79BB;&#x5C4F;&#x6E32;&#x67D3;&#x7684;&#x89E6;&#x53D1;&#xFF1A;CoreGraphics&#x7684;&#x4E0A;&#x4E0B;&#x6587;&#x7ED8;&#x5236;&#xFF0C;drawRect&#x7ED8;&#x5236;&#xFF0C;layer&#x5706;&#x89D2;/&#x8FB9;&#x6846;/&#x9634;&#x5F71;/&#x6297;&#x952F;&#x9F7F;/&#x5149;&#x6805;&#x5316;&#xFF08;shouldRasterize&#x7F6E;&#x4E3A;YES&#xFF09;&#x7B49;&#x3002;</p>
+<p>&#x2022;&#x79BB;&#x5C4F;&#x6E32;&#x67D3;&#x7684;&#x68C0;&#x6D4B;&#xFF1A;Instruments&#x7684;CoreAnimation&#x5DE5;&#x5177;&#x52A8;&#x6001;&#x76D1;&#x6D4B;&#x3002;&#xFF08;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;&#xFF1A;Color Offscreen &#x2013;Rendered Yellow &#xFF1A;&#x5F00;&#x542F;&#x540E;&#x4F1A;&#x628A;&#x90A3;&#x4E9B;&#x9700;&#x8981;&#x79BB;&#x5C4F;&#x6E32;&#x67D3;&#x7684;&#x56FE;&#x5C42;&#x9AD8;&#x4EAE;&#x6210;&#x9EC4;&#x8272;&#xFF0C;&#x9EC4;&#x8272;&#x56FE;&#x5C42;&#x53EF;&#x80FD;&#x5B58;&#x5728;&#x6027;&#x80FD;&#x95EE;&#x9898;&#x3002;&#xFF09;</p>
+<p>&#x2022;&#x5149;&#x6805;&#x5316;&#x7B80;&#x4ECB;&#xFF1A;&#x9690;&#x5F0F;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x4F4D;&#x56FE;&#xFF0C;&#x5404;&#x79CD;&#x9634;&#x5F71;&#x906E;&#x7F69;&#x7B49;&#x6548;&#x679C;&#x4E5F;&#x4F1A;&#x4FDD;&#x5B58;&#x5230;&#x4F4D;&#x56FE;&#x4E2D;&#x7F13;&#x5B58;&#x8D77;&#x6765;&#xFF0C;&#x4ECE;&#x800C;&#x51CF;&#x5C11;&#x6E32;&#x67D3;&#x7684;&#x9891;&#x5EA6;&#xFF0C;&#x628A;GPU&#x7684;&#x64CD;&#x4F5C;&#x8F6C;&#x5230;CPU&#x4E0A;&#xFF0C;&#x751F;&#x6210;&#x4F4D;&#x56FE;&#x7F13;&#x5B58;&#xFF0C;&#x76F4;&#x63A5;&#x8BFB;&#x53D6;&#x8C03;&#x7528;&#x3002;&#xFF08;&#x6CE8;&#xFF1A;&#x5BF9;&#x4E8E;&#x7ECF;&#x5E38;&#x53D8;&#x52A8;&#x7684;&#x5185;&#x5BB9;&#xFF0C;&#x4E0D;&#x8981;&#x5F00;&#x542F;&#x5149;&#x6805;&#x5316;&#xFF0C;&#x9632;&#x6B62;&#x6027;&#x80FD;&#x6D6A;&#x8D39;&#xFF0C;&#x5982;Cell&#x7684;&#x590D;&#x7528;&#xFF09;</p>
+<p>&#x2022;&#x5149;&#x6805;&#x5316;&#x7684;&#x68C0;&#x6D4B;&#xFF1A;Color Hits Green and Misses Red &#x5F00;&#x542F;&#x540E;&#xFF0C;&#x82E5;shouldRasterize&#x8BBE;&#x7F6E;&#x4E3A;YES&#xFF0C;&#x5BF9;&#x5E94;&#x7684;&#x6E32;&#x67D3;&#x7ED3;&#x679C;&#x4F1A;&#x7F13;&#x5B58;&#xFF0C;&#x5982;&#x679C;&#x56FE;&#x5C42;&#x662F;&#x7EFF;&#x8272;&#xFF0C;&#x8868;&#x793A;&#x7F13;&#x5B58;&#x88AB;&#x590D;&#x7528;&#xFF1B;&#x5982;&#x679C;&#x662F;&#x7EA2;&#x8272;&#xFF0C;&#x5C31;&#x8868;&#x793A;&#x7F13;&#x5B58;&#x88AB;&#x91CD;&#x590D;&#x521B;&#x5EFA;&#xFF0C;&#x53EF;&#x80FD;&#x5B58;&#x5728;&#x6027;&#x80FD;&#x95EE;&#x9898;&#x3002;</p>
+<p>&#x2022;GPU&#x7F13;&#x5B58;&#x533A;&#x6E32;&#x67D3;&#x4F18;&#x52BF;&#xFF1A;&#x4E3A;&#x56FE;&#x50CF;&#x663E;&#x793A;&#x505A;&#x4E86;&#x9AD8;&#x5EA6;&#x4F18;&#x5316;&#xFF0C;&#x901F;&#x5EA6;&#x8F83;&#x5FEB;&#x3002;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="yibuhuizhi.html" class="navigation navigation-prev " aria-label="Previous page: 1.6异步绘制原理">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../oc/2.html" class="navigation navigation-next " aria-label="Next page: 2、OC语言">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"1.7离屏渲染","level":"1.2.7","depth":2,"next":{"title":"2、OC语言","level":"1.3","depth":1,"path":"md/oc/2.md","ref":"md/oc/2.md","articles":[{"title":"2.1OC相关面试题","level":"1.3.1","depth":2,"path":"md/oc/2.1.md","ref":"md/oc/2.1.md","articles":[]},{"title":"2.2分类","level":"1.3.2","depth":2,"path":"md/oc/2.2.md","ref":"md/oc/2.2.md","articles":[]},{"title":"2.4扩展","level":"1.3.3","depth":2,"path":"md/oc/2_4.md","ref":"md/oc/2_4.md","articles":[]},{"title":"2.5代理","level":"1.3.4","depth":2,"path":"md/oc/2.5.md","ref":"md/oc/2.5.md","articles":[]},{"title":"2.6通知","level":"1.3.5","depth":2,"path":"md/oc/2.6.md","ref":"md/oc/2.6.md","articles":[]},{"title":"2.7KVO","level":"1.3.6","depth":2,"path":"md/oc/2.7.md","ref":"md/oc/2.7.md","articles":[]},{"title":"2.8KVC","level":"1.3.7","depth":2,"path":"md/oc/2.8.md","ref":"md/oc/2.8.md","articles":[]},{"title":"2.9属性关键字","level":"1.3.8","depth":2,"path":"md/oc/2.9.md","ref":"md/oc/2.9.md","articles":[]}]},"previous":{"title":"1.6异步绘制原理","level":"1.2.6","depth":2,"path":"md/ui/yibuhuizhi.md","ref":"md/ui/yibuhuizhi.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"md/ui/lipingxuanran.md","mtime":"2019-04-24T14:42:05.318Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-21T11:05:20.149Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
