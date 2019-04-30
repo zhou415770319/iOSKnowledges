@@ -832,8 +832,259 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <p>2.2.md</p>
+                                <p>iOS &#x5206;&#x7C7B;&#x5E95;&#x5C42;&#x662F;&#x600E;&#x4E48;&#x5B9E;&#x73B0;&#x7684;&#xFF1F;
+&#x672C;&#x6587;&#x5C06;&#x5206;&#x5982;&#x4E0B;&#x56DB;&#x4E2A;&#x6A21;&#x5757;&#x8FDB;&#x884C;&#x63A2;&#x7A76;</p>
+<p>1.&#x5206;&#x7C7B;&#x7684;&#x7ED3;&#x6784;&#x4F53;
+2.&#x7F16;&#x8BD1;&#x65F6;&#x7684;&#x5206;&#x7C7B;
+3.&#x5206;&#x7C7B;&#x7684;&#x52A0;&#x8F7D;
+4.&#x603B;&#x7ED3;</p>
+<p>&#x672C;&#x6587;&#x4F7F;&#x7528;&#x7684;runtime&#x6E90;&#x7801;&#x7248;&#x672C;&#x662F; objc4 - 680
+&#x6587;&#x4E2D;&#x7C7B;&#x4E0E;&#x5206;&#x7C7B;&#x4EE3;&#x7801;&#x5982;&#x4E0B;</p>
+<pre><code>//&#x7C7B;
+@interface Person : NSObject
+@property (nonatomic ,copy) NSString *presonName;
+@end
+@implementation Person
+- (void)doSomeThing{
+    NSLog(@&quot;Person&quot;);
+}
+@end
+</code></pre><pre><code>// &#x5206;&#x7C7B;
+@interface Person(categoryPerson)
+@property (nonatomic ,copy) NSString *categoryPersonName;
+@end
+@implementation Person(categoryPerson)
+- (void)doSomeThing{
+    NSLog(@&quot;categoryPerson&quot;);
+}
+@end
+</code></pre><h3 id="1&#x5206;&#x7C7B;&#x7684;&#x7ED3;&#x6784;&#x4F53;">1.&#x5206;&#x7C7B;&#x7684;&#x7ED3;&#x6784;&#x4F53;</h3>
+<pre><code>struct _category_t {
+    const char *name;//&#x7C7B;&#x540D;
+    struct _class_t *cls;//&#x7C7B;
+    const struct _method_list_t *instance_methods;//category&#x4E2D;&#x6240;&#x6709;&#x7ED9;&#x7C7B;&#x6DFB;&#x52A0;&#x7684;&#x5B9E;&#x4F8B;&#x65B9;&#x6CD5;&#x7684;&#x5217;&#x8868;&#xFF08;instanceMethods&#xFF09;
+    const struct _method_list_t *class_methods;//category&#x4E2D;&#x6240;&#x6709;&#x6DFB;&#x52A0;&#x7684;&#x7C7B;&#x65B9;&#x6CD5;&#x7684;&#x5217;&#x8868;&#xFF08;classMethods&#xFF09;
+    const struct _protocol_list_t *protocols;//category&#x5B9E;&#x73B0;&#x7684;&#x6240;&#x6709;&#x534F;&#x8BAE;&#x7684;&#x5217;&#x8868;&#xFF08;protocols&#xFF09;
+    const struct _prop_list_t *properties;//category&#x4E2D;&#x6DFB;&#x52A0;&#x7684;&#x6240;&#x6709;&#x5C5E;&#x6027;&#xFF08;instanceProperties&#xFF09;
+};
 
+struct category_t {
+    const char *name; // &#x7C7B;&#x540D;
+    classref_t cls;   // &#x5206;&#x7C7B;&#x6240;&#x5C5E;&#x7684;&#x7C7B;
+    struct method_list_t *instanceMethods;  // &#x5B9E;&#x4F8B;&#x65B9;&#x6CD5;&#x5217;&#x8868;
+    struct method_list_t *classMethods;     // &#x7C7B;&#x65B9;&#x6CD5;&#x5217;&#x8868;
+    struct protocol_list_t *protocols;      // &#x9075;&#x5FAA;&#x7684;&#x534F;&#x8BAE;&#x5217;&#x8868;
+    struct property_list_t *instanceProperties; // &#x5C5E;&#x6027;&#x5217;&#x8868;
+
+    // &#x5982;&#x679C;&#x662F;&#x5143;&#x7C7B;&#xFF0C;&#x5C31;&#x8FD4;&#x56DE;&#x7C7B;&#x65B9;&#x6CD5;&#x5217;&#x8868;&#xFF1B;&#x5426;&#x5219;&#x8FD4;&#x56DE;&#x5B9E;&#x4F8B;&#x65B9;&#x6CD5;&#x5217;&#x8868;
+    method_list_t *methodsForMeta(bool isMeta) {
+        if (isMeta) {
+            return classMethods;
+        } else {
+            return instanceMethods;
+        }
+    }
+
+    // &#x5982;&#x679C;&#x662F;&#x5143;&#x7C7B;&#xFF0C;&#x5C31;&#x8FD4;&#x56DE; nil&#xFF0C;&#x56E0;&#x4E3A;&#x5143;&#x7C7B;&#x6CA1;&#x6709;&#x5C5E;&#x6027;&#xFF1B;&#x5426;&#x5219;&#x8FD4;&#x56DE;&#x5B9E;&#x4F8B;&#x5C5E;&#x6027;&#x5217;&#x8868;&#xFF0C;&#x4F46;&#x662F;...&#x5B9E;&#x4F8B;&#x5C5E;&#x6027;
+    property_list_t *propertiesForMeta(bool isMeta) {
+        if (isMeta) {
+            return nil; // classProperties;
+        } else {
+            return instanceProperties;
+        }
+    }
+};
+</code></pre><h3 id="2&#x7F16;&#x8BD1;&#x65F6;&#x7684;&#x5206;&#x7C7B;">2.&#x7F16;&#x8BD1;&#x65F6;&#x7684;&#x5206;&#x7C7B;</h3>
+<h4 id="21&#x5206;&#x7C7B;&#x7684;&#x5C5E;&#x6027;">2.1&#x5206;&#x7C7B;&#x7684;&#x5C5E;&#x6027;</h4>
+<pre><code>// Person(categoryPerson) &#x5C5E;&#x6027;&#x5217;&#x8868;
+static struct /*_prop_list_t*/ {
+    unsigned int entsize;  // sizeof(struct _prop_t)
+    unsigned int count_of_properties;
+    struct _prop_t prop_list[1];
+} _OBJC_$_PROP_LIST_Person_$_categoryPerson __attribute__ ((used, section (&quot;__DATA,__objc_const&quot;))) = {
+    sizeof(_prop_t),
+    1,
+    {{&quot;categoryPersonName&quot;,&quot;T@\&quot;NSString\&quot;,C,N&quot;}}
+};
+
+// Person &#x5C5E;&#x6027;&#x5217;&#x8868;
+static struct /*_prop_list_t*/ {
+    unsigned int entsize;  // sizeof(struct _prop_t)
+    unsigned int count_of_properties;
+    struct _prop_t prop_list[1];
+} _OBJC_$_PROP_LIST_Person __attribute__ ((used, section (&quot;__DATA,__objc_const&quot;))) = {
+    sizeof(_prop_t),
+    1,
+    {{&quot;presonName&quot;,&quot;T@\&quot;NSString\&quot;,C,N,V_presonName&quot;}}
+};
+</code></pre><p>&#x5BF9;&#x6BD4;&#x4E0A;&#x8FF0;&#x4EE3;&#x7801;&#x53EF;&#x4EE5;&#x53D1;&#x73B0;&#xFF1A;&#x5728;&#x5206;&#x7C7B;&#x4E2D;&#x53EF;&#x4EE5;&#x58F0;&#x660E;&#x5C5E;&#x6027;&#xFF0C;&#x5E76;&#x4E14;&#x540C;&#x6837;&#x4F1A;&#x751F;&#x6210;&#x4E00;&#x4E2A; _prop_list_t &#x7684;&#x7ED3;&#x6784;&#x4F53;</p>
+<h4 id="22&#x5206;&#x7C7B;&#x7684;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;&#xFF1F;">2.2&#x5206;&#x7C7B;&#x7684;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;&#xFF1F;</h4>
+<pre><code>// Person &#x5B9E;&#x4F8B;&#x53D8;&#x91CF;&#x5217;&#x8868;
+
+static struct /*_ivar_list_t*/ {
+    unsigned int entsize;  // sizeof(struct _prop_t)
+    unsigned int count;
+    struct _ivar_t ivar_list[1];
+} _OBJC_$_INSTANCE_VARIABLES_Person __attribute__ ((used, section (&quot;__DATA,__objc_const&quot;))) = {
+    sizeof(_ivar_t),
+    1,
+    {{(unsigned long int *)&amp;OBJC_IVAR_$_Person$_presonName, &quot;_presonName&quot;, &quot;@\&quot;NSString\&quot;&quot;, 3, 8}}
+};
+</code></pre><p>&#x56E0;&#x4E3A; _category_t &#x8FD9;&#x4E2A;&#x7ED3;&#x6784;&#x4F53;&#x4E2D;&#x5E76;&#x6CA1;&#x6709; _ivar_list_t
+&#x6240;&#x4EE5;&#x5728;&#x7F16;&#x8BD1;&#x65F6;&#x7CFB;&#x7EDF;&#x6CA1;&#x6709;Person(categoryPerson) &#x6CA1;&#x6709;&#x751F;&#x6210;&#x7C7B;&#x4F3C;&#x7684;&#x76F8;&#x5E94;&#x7ED3;&#x6784;&#x4F53;&#xFF0C;&#x4E5F;&#x6CA1;&#x6709;&#x751F;&#x6210; _categoryPersonName&#x3002;</p>
+<h4 id="23&#x5206;&#x7C7B;&#x7684;&#x5B9E;&#x4F8B;&#x65B9;&#x6CD5;">2.3&#x5206;&#x7C7B;&#x7684;&#x5B9E;&#x4F8B;&#x65B9;&#x6CD5;</h4>
+<pre><code>// Person &#x5B9E;&#x4F8B;&#x65B9;&#x6CD5;&#x7ED3;&#x6784;&#x4F53;
+static struct /*_method_list_t*/ {
+    unsigned int entsize;  // sizeof(struct _objc_method)
+    unsigned int method_count;
+    struct _objc_method method_list[3];
+} _OBJC_$_INSTANCE_METHODS_Person __attribute__ ((used, section (&quot;__DATA,__objc_const&quot;))) = {
+    sizeof(_objc_method),
+    3,
+    {{(struct objc_selector *)&quot;doSomeThing&quot;, &quot;v16@0:8&quot;, (void *)_I_Person_doSomeThing},
+    {(struct objc_selector *)&quot;presonName&quot;, &quot;@16@0:8&quot;, (void *)_I_Person_presonName},
+    {(struct objc_selector *)&quot;setPresonName:&quot;, &quot;v24@0:8@16&quot;, (void *)_I_Person_setPresonName_}}
+};
+
+// Person(categoryPerson )&#x5B9E;&#x4F8B;&#x65B9;&#x6CD5;&#x7ED3;&#x6784;&#x4F53;
+static struct /*_method_list_t*/ {
+    unsigned int entsize;  // sizeof(struct _objc_method)
+    unsigned int method_count;
+    struct _objc_method method_list[1];
+} _OBJC_$_CATEGORY_INSTANCE_METHODS_Person_$_categoryPerson __attribute__ ((used, section (&quot;__DATA,__objc_const&quot;))) = {
+    sizeof(_objc_method),
+    1,
+    {{(struct objc_selector *)&quot;doSomeThing&quot;, &quot;v16@0:8&quot;, (void *)_I_Person_categoryPerson_doSomeThing}}
+};
+</code></pre><p>&#x5BF9;&#x6BD4;&#x4E0A;&#x8FF0;&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF1A;&#x867D;&#x7136;&#x5206;&#x7C7B;&#x53EF;&#x4EE5;&#x58F0;&#x660E;&#x5C5E;&#x6027;&#xFF0C;&#x4F46;&#x662F;&#x7F16;&#x8BD1;&#x65F6;&#xFF0C;&#x7CFB;&#x7EDF;&#x5E76;&#x6CA1;&#x6709;&#x751F;&#x6210;&#x5206;&#x7C7B;&#x5C5E;&#x6027;&#x7684; get&#xFF0F;set &#x65B9;&#x6CD5;&#xFF0C;&#x6240;&#x4EE5;&#xFF0C;&#x8FD9;&#x5C31;&#x662F;&#x4E3A;&#x4EC0;&#x4E48;&#x5206;&#x7C7B;&#x8981;&#x5229;&#x7528;
+runtime &#x52A8;&#x6001;&#x6DFB;&#x52A0;&#x5C5E;&#x6027;&#xFF0C;&#x5982;&#x4F55;&#x52A8;&#x6001;&#x6DFB;&#x52A0;&#x5C5E;&#x6027;&#xFF0C;&#x6709;&#x5174;&#x8DA3;&#x7684;&#x540C;&#x5B66;&#x53EF;&#x4EE5;&#x67E5;&#x770B;&#x4E0B;&#x9762;&#x6587;&#x7AE0; iOS&#x5206;&#x7C7B;&#x4E2D;&#x901A;&#x8FC7;runtime&#x6DFB;&#x52A0;&#x52A8;&#x6001;&#x5C5E;&#x6027;</p>
+<h4 id="24&#x5206;&#x7C7B;&#x7684;&#x7ED3;&#x6784;&#x4F53;">2.4&#x5206;&#x7C7B;&#x7684;&#x7ED3;&#x6784;&#x4F53;</h4>
+<pre><code>// Person(categoryPerson ) &#x7ED3;&#x6784;&#x4F53;
+static struct _category_t _OBJC_$_CATEGORY_Person_$_categoryPerson __attribute__ ((used, section (&quot;__DATA,__objc_const&quot;))) = 
+{
+    &quot;Person&quot;,
+    0, // &amp;OBJC_CLASS_$_Person,
+    (const struct _method_list_t *)&amp;_OBJC_$_CATEGORY_INSTANCE_METHODS_Person_$_categoryPerson,
+    0,
+    0,
+    (const struct _prop_list_t *)&amp;_OBJC_$_PROP_LIST_Person_$_categoryPerson,
+};
+</code></pre><p>&#x8FD9;&#x662F;&#x7CFB;&#x7EDF;&#x5728;&#x7F16;&#x8BD1;&#x65F6;&#x5B9E;&#x4F8B;&#x5316; <em>category_t &#x751F;&#x6210;&#x7684;
+_OBJC</em>$<em>CATEGORY_Person</em>$_categoryPerson</p>
+<h4 id="25&#x5206;&#x7C7B;&#x6570;&#x7EC4;">2.5&#x5206;&#x7C7B;&#x6570;&#x7EC4;</h4>
+<pre><code>static struct _category_t *L_OBJC_LABEL_CATEGORY_$ [1] __attribute__((used, section (&quot;__DATA, __objc_catlist,regular,no_dead_strip&quot;)))= {
+    &amp;_OBJC_$_CATEGORY_Person_$_categoryPerson,
+};
+</code></pre><p>&#x7F16;&#x8BD1;&#x5668;&#x6700;&#x540E;&#x751F;&#x6210;&#x4E86;&#x4E00;&#x4E2A;&#x6570;&#x7EC4;&#xFF0C;&#x6570;&#x7EC4;&#x7684;&#x5143;&#x7D20;&#x5C31;&#x662F;&#x6211;&#x4EEC;&#x521B;&#x5EFA;&#x7684;&#x5404;&#x4E2A;&#x5206;&#x7C7B;&#xFF0C;&#x7528;&#x6765;&#x5728;&#x8FD0;&#x884C;&#x65F6;&#x52A0;&#x8F7D;&#x5206;&#x7C7B;&#x3002;</p>
+<h3 id="3&#x5206;&#x7C7B;&#x7684;&#x52A0;&#x8F7D;">3.&#x5206;&#x7C7B;&#x7684;&#x52A0;&#x8F7D;</h3>
+<h4 id="31&#x52A0;&#x8F7D;&#x5206;&#x7C7B;&#x8C03;&#x7528;&#x6808;">3.1&#x52A0;&#x8F7D;&#x5206;&#x7C7B;&#x8C03;&#x7528;&#x6808;</h4>
+<pre><code>_objc_init
+&#x2514;&#x2500;&#x2500;map_2_images
+    &#x2514;&#x2500;&#x2500;map_images_nolock
+        &#x2514;&#x2500;&#x2500;_read_images
+</code></pre><p>&#x5206;&#x7C7B;&#x52A0;&#x8F7D;&#x7684;&#x8C03;&#x7528;&#x6808;&#x5982;&#x4E0A;&#x8FF0;
+_objc_init &#x7B97;&#x662F;&#x6574;&#x4E2A; objc4 &#x7684;&#x5165;&#x53E3;&#xFF0C;&#x8FDB;&#x884C;&#x4E86;&#x4E00;&#x4E9B;&#x521D;&#x59CB;&#x5316;&#x64CD;&#x4F5C;&#xFF0C;&#x6CE8;&#x518C;&#x4E86;&#x955C;&#x50CF;&#x72B6;&#x6001;&#x6539;&#x53D8;&#x65F6;&#x7684;&#x56DE;&#x8C03;&#x51FD;&#x6570;
+map_2_images &#x4E3B;&#x8981;&#x662F;&#x52A0;&#x9501;&#x5E76;&#x8C03;&#x7528; map_images_nolock
+map_images_nolock &#x5728;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x4E2D;&#xFF0C;&#x5B8C;&#x6210;&#x6240;&#x6709; class &#x7684;&#x6CE8;&#x518C;&#x3001;fixup&#x7B49;&#x5DE5;&#x4F5C;&#xFF0C;&#x8FD8;&#x6709;&#x521D;&#x59CB;&#x5316;&#x81EA;&#x52A8;&#x91CA;&#x653E;&#x6C60;&#x3001;&#x521D;&#x59CB;&#x5316; side table &#x7B49;&#x5DE5;&#x4F5C;&#x5E76;&#x5728;&#x51FD;&#x6570;&#x540E;&#x7AEF;&#x8C03;&#x7528;&#x4E86; _read_images
+_read_images &#x65B9;&#x6CD5;&#x5E72;&#x4E86;&#x5F88;&#x591A;&#x82E6;&#x529B;&#x6D3B;&#xFF0C;&#x6BD4;&#x5982;&#x52A0;&#x8F7D;&#x7C7B;&#x3001;Protocol&#x3001;Category&#xFF0C;&#x52A0;&#x8F7D;&#x5206;&#x7C7B;&#x7684;&#x4EE3;&#x7801;&#x5C31;&#x5199;&#x5728; _read_images &#x51FD;&#x6570;&#x7684;&#x5C3E;&#x90E8;
+&#x8BE5;&#x8C03;&#x7528;&#x6808;&#x5165;&#x53E3;&#x51FD;&#x6570; void _objc_init(void) &#x5728; objc-os.mm &#x4E2D;&#xFF0C;&#x6709;&#x5174;&#x8DA3;&#x7684;&#x540C;&#x5B66;&#x53EF;&#x4EE5;&#x53BB;&#x770B;&#x770B;&#x8FD9;&#x4E9B;&#x51FD;&#x6570;&#x91CC;&#x90FD;&#x505A;&#x4E86;&#x4EC0;&#x4E48;</p>
+<h4 id="32-readimages-&#x4E2D;&#x52A0;&#x8F7D;&#x5206;&#x7C7B;&#x7684;&#x6E90;&#x7801;">3.2 _read_images &#x4E2D;&#x52A0;&#x8F7D;&#x5206;&#x7C7B;&#x7684;&#x6E90;&#x7801;</h4>
+<p>&#x52A0;&#x8F7D;&#x5206;&#x7C7B;&#x7684;&#x6E90;&#x7801;&#x4E3B;&#x8981;&#x505A;&#x4E86;&#x4E24;&#x4EF6;&#x4E8B;
+&#x628A;category&#x7684;&#x5B9E;&#x4F8B;&#x65B9;&#x6CD5;&#x3001;&#x534F;&#x8BAE;&#x4EE5;&#x53CA;&#x5C5E;&#x6027;&#x6DFB;&#x52A0;&#x5230;&#x7C7B;&#x4E0A;
+&#x628A;category&#x7684;&#x7C7B;&#x65B9;&#x6CD5;&#x548C;&#x534F;&#x8BAE;&#x6DFB;&#x52A0;&#x5230;&#x7C7B;&#x7684;metaclass&#x4E0A;
+&#x7565;&#x53BB;&#x4E0E;&#x672C;&#x6587;&#x65E0;&#x5173;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x5F97;&#x5230;&#x5982;&#x4E0B;&#x4EE3;&#x7801;</p>
+<pre><code>// &#x83B7;&#x53D6; &#x955C;&#x50CF;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x5206;&#x7C7B;
+category_t **catlist = _getObjc2CategoryList(hi, &amp;count);
+// &#x904D;&#x5386; catlist
+for (i = 0; i &lt; count; i++) {
+    category_t *cat = catlist[i];
+    Class cls = remapClass(cat-&gt;cls);
+    if (cat-&gt;instanceMethods ||  cat-&gt;protocols
+        ||  cat-&gt;instanceProperties) 
+    {
+        addUnattachedCategoryForClass(cat, cls, hi);
+        if (cls-&gt;isRealized()) {
+            remethodizeClass(cls);
+            classExists = YES; 
+        }
+    }
+    if (cat-&gt;classMethods  ||  cat-&gt;protocols
+        /* ||  cat-&gt;classProperties */)
+    {
+        addUnattachedCategoryForClass(cat, cls-&gt;ISA(), hi);
+        if (cls-&gt;ISA()-&gt;isRealized()) {
+            remethodizeClass(cls-&gt;ISA());
+        }
+    }
+}
+</code></pre><p>&#x505A;&#x4E0A;&#x8FF0;&#x4E8B;&#x60C5;&#x4E3B;&#x8981;&#x7528;&#x5230;&#x662F;&#x5982;&#x4E0B;&#x4E24;&#x4E2A;&#x51FD;&#x6570;
+addUnattachedCategoryForClass(cat, cls, hi) &#x4E3A;&#x7C7B;&#x6DFB;&#x52A0;&#x672A;&#x4F9D;&#x9644;&#x7684;&#x5206;&#x7C7B;
+&#x6267;&#x884C;&#x8FC7;&#x7A0B;&#x4F2A;&#x4EE3;&#x7801;&#xFF1A;
+1.&#x53D6;&#x5F97;&#x5B58;&#x50A8;&#x6240;&#x6709; unattached &#x5206;&#x7C7B;&#x7684;&#x5217;&#x8868;</p>
+<pre><code>NXMapTable *cats = unattachedCategories();
+</code></pre><p>2.&#x4ECE; cats &#x5217;&#x8868;&#x4E2D;&#x627E;&#x5012; cls &#x5BF9;&#x5E94;&#x7684; unattached &#x5206;&#x7C7B;&#x7684;&#x5217;&#x8868;</p>
+<pre><code>category_list *list = (category_list *)NXMapGet(cats, cls);
+</code></pre><p>3.&#x5C06;&#x65B0;&#x6765;&#x7684;&#x5206;&#x7C7B; cat &#x6DFB;&#x52A0;&#x521A;&#x521A;&#x5F00;&#x8F9F;&#x7684;&#x4F4D;&#x7F6E;&#x4E0A;</p>
+<pre><code>list-&gt;list[list-&gt;count++] = (locstamped_category_t){cat, catHeader};
+</code></pre><p>4.&#x5C06;&#x65B0;&#x7684; list &#x91CD;&#x65B0;&#x63D2;&#x5165; cats &#x4E2D;&#xFF0C;&#x4F1A;&#x8986;&#x76D6;&#x8001;&#x7684; list</p>
+<pre><code>NXMapInsert(cats, cls, list);
+</code></pre><p>&#x6267;&#x884C;&#x5B8C;&#x4E0A;&#x8FF0;&#x8FC7;&#x7A0B;&#x540E;&#xFF0C;&#x7CFB;&#x7EDF;&#x5C06;&#x8FD9;&#x4E2A;&#x5206;&#x7C7B;&#x653E;&#x5230;&#x4E86;&#x4E00;&#x4E2A; cls &#x5BF9;&#x5E94;&#x7684; unattached &#x5206;&#x7C7B;&#x7684; list &#x4E2D;&#xFF08;&#x6709;&#x70B9;&#x7ED5;&#x53E3;....&#xFF09;,&#x8FD9;&#x4E2A; list &#x4F1A;&#x5728; remethodizeClass(cls) &#x65B9;&#x6CD5;&#x7528;&#x5230;
+remethodizeClass(cls)
+&#x6267;&#x884C;&#x8FC7;&#x7A0B;&#x4F2A;&#x4EE3;&#x7801;&#xFF1A;
+1.&#x53D6;&#x5F97; cls &#x7C7B;&#x7684; unattached &#x7684;&#x5206;&#x7C7B;&#x5217;&#x8868;</p>
+<pre><code>category_list *cats = unattachedCategoriesForClass(cls, false/*not realizing*/)
+</code></pre><p>2.&#x5C06; unattached &#x7684;&#x5206;&#x7C7B;&#x5217;&#x8868; attach &#x5230; cls &#x7C7B;&#x4E0A;</p>
+<pre><code>attachCategories(cls, cats, true /* &#x6E05;&#x7A7A;&#x65B9;&#x6CD5;&#x7F13;&#x5B58; flush caches*/);
+</code></pre><p>&#x6267;&#x884C;&#x5B8C;&#x4E0A;&#x8FF0;&#x8FC7;&#x7A0B;&#x540E;&#xFF0C;&#x7CFB;&#x7EDF;&#x5C31;&#x628A;category&#x7684;&#x5B9E;&#x4F8B;&#x65B9;&#x6CD5;&#x3001;&#x534F;&#x8BAE;&#x4EE5;&#x53CA;&#x5C5E;&#x6027;&#x6DFB;&#x52A0;&#x5230;&#x7C7B;&#x4E0A;
+&#x6700;&#x540E;&#x518D;&#x6765;&#x770B;&#x4E00;&#x4E0B;
+attachCategories(cls, cats, true /<em> &#x6E05;&#x7A7A;&#x65B9;&#x6CD5;&#x7F13;&#x5B58; flush caches</em>/)&#x5185;&#x90E8;&#x7684;&#x5B9E;&#x73B0;&#x8FC7;&#x7A0B;
+1.&#x5728;&#x5806;&#x4E0A;&#x521B;&#x5EFA;&#x65B9;&#x6CD5;&#x3001;&#x5C5E;&#x6027;&#x3001;&#x534F;&#x8BAE;&#x6570;&#x7EC4;&#xFF0C;&#x7528;&#x6765;&#x5B58;&#x50A8;&#x5206;&#x7C7B;&#x7684;&#x65B9;&#x6CD5;&#x3001;&#x5C5E;&#x6027;&#x3001;&#x534F;&#x8BAE;</p>
+<pre><code>method_list_t **mlists = (method_list_t **)malloc(cats-&gt;count * sizeof(*mlists));
+property_list_t **proplists = (property_list_t **)malloc(cats-&gt;count * sizeof(*proplists));
+protocol_list_t **protolists = (protocol_list_t **)malloc(cats-&gt;count * sizeof(*protolists));
+</code></pre><p>2.&#x904D;&#x5386; cats &#xFF0C;&#x53D6;&#x51FA;&#x5404;&#x4E2A;&#x5206;&#x7C7B;&#x7684;&#x65B9;&#x6CD5;&#x3001;&#x5C5E;&#x6027;&#x3001;&#x534F;&#x8BAE;&#xFF0C;&#x5E76;&#x586B;&#x5145;&#x5230;&#x4E0A;&#x8FF0;&#x4EE3;&#x7801;&#x521B;&#x5EFA;&#x7684;&#x6570;&#x7EC4;&#x4E2D;</p>
+<pre><code>int mcount = 0; // &#x8BB0;&#x5F55;&#x65B9;&#x6CD5;&#x7684;&#x6570;&#x91CF;
+int propcount = 0; // &#x8BB0;&#x5F55;&#x5C5E;&#x6027;&#x7684;&#x6570;&#x91CF;
+int protocount = 0; // &#x8BB0;&#x5F55;&#x534F;&#x8BAE;&#x7684;&#x6570;&#x91CF;
+int i = cats-&gt;count; // &#x4ECE;&#x540E;&#x5F00;&#x59CB;&#xFF0C;&#x4FDD;&#x8BC1;&#x5148;&#x53D6;&#x6700;&#x65B0;&#x7684;&#x5206;&#x7C7B;
+bool fromBundle = NO; // &#x8BB0;&#x5F55;&#x662F;&#x5426;&#x662F;&#x4ECE; bundle &#x4E2D;&#x53D6;&#x7684;
+while (i--) { // &#x4ECE;&#x540E;&#x5F80;&#x524D;&#x904D;&#x5386;
+    auto&amp; entry = cats-&gt;list[i]; // &#x5206;&#x7C7B;&#xFF0C;locstamped_category_t &#x7C7B;&#x578B;
+    // &#x53D6;&#x51FA;&#x5206;&#x7C7B;&#x4E2D;&#x7684;&#x65B9;&#x6CD5;&#x5217;&#x8868;&#xFF1B;&#x5982;&#x679C;&#x662F;&#x5143;&#x7C7B;&#xFF0C;&#x53D6;&#x5F97;&#x7684;&#x662F;&#x7C7B;&#x65B9;&#x6CD5;&#x5217;&#x8868;&#xFF1B;&#x5426;&#x5219;&#x53D6;&#x5F97;&#x7684;&#x662F;&#x5B9E;&#x4F8B;&#x65B9;&#x6CD5;&#x5217;&#x8868;
+    method_list_t *mlist = entry.cat-&gt;methodsForMeta(isMeta);
+    if (mlist) {
+        mlists[mcount++] = mlist; // &#x5C06;&#x65B9;&#x6CD5;&#x5217;&#x8868;&#x653E;&#x5165; mlists &#x65B9;&#x6CD5;&#x5217;&#x8868;&#x6570;&#x7EC4;&#x4E2D;
+        fromBundle |= entry.hi-&gt;isBundle(); // &#x5206;&#x7C7B;&#x7684;&#x5934;&#x90E8;&#x4FE1;&#x606F;&#x4E2D;&#x5B58;&#x50A8;&#x4E86;&#x662F;&#x5426;&#x662F; bundle&#xFF0C;&#x5C06;&#x5176;&#x8BB0;&#x4F4F;
+    }
+    // &#x53D6;&#x51FA;&#x5206;&#x7C7B;&#x4E2D;&#x7684;&#x5C5E;&#x6027;&#x5217;&#x8868;&#xFF0C;&#x5982;&#x679C;&#x662F;&#x5143;&#x7C7B;&#xFF0C;&#x53D6;&#x5F97;&#x662F;nil
+    property_list_t *proplist = entry.cat-&gt;propertiesForMeta(isMeta);
+    if (proplist) {
+        proplists[propcount++] = proplist; // &#x5C06;&#x5C5E;&#x6027;&#x5217;&#x8868;&#x653E;&#x5165; proplists &#x5C5E;&#x6027;&#x5217;&#x8868;&#x6570;&#x7EC4;&#x4E2D;
+    }
+    // &#x53D6;&#x51FA;&#x5206;&#x7C7B;&#x4E2D;&#x9075;&#x5FAA;&#x7684;&#x534F;&#x8BAE;&#x5217;&#x8868;
+    protocol_list_t *protolist = entry.cat-&gt;protocols;
+    if (protolist) {
+        protolists[protocount++] = protolist; // &#x5C06;&#x534F;&#x8BAE;&#x5217;&#x8868;&#x653E;&#x5165; protolists &#x534F;&#x8BAE;&#x5217;&#x8868;&#x6570;&#x7EC4;&#x4E2D;
+    }
+}
+</code></pre><p>3.&#x53D6;&#x51FA; cls &#x7684; class_rw_t &#x6570;&#x636E;</p>
+<pre><code>auto rw = cls-&gt;data();
+</code></pre><p>4.&#x5B58;&#x50A8;&#x65B9;&#x6CD5;&#x3001;&#x5C5E;&#x6027;&#x3001;&#x534F;&#x8BAE;&#x6570;&#x7EC4;&#x5230; rw</p>
+<pre><code>// &#x51C6;&#x5907; mlists &#x4E2D;&#x7684;&#x65B9;&#x6CD5;
+prepareMethodLists(cls, mlists, mcount/*&#x65B9;&#x6CD5;&#x5217;&#x8868;&#x7684;&#x6570;&#x91CF;*/, NO/*&#x4E0D;&#x662F;&#x57FA;&#x672C;&#x65B9;&#x6CD5;*/, fromBundle/*&#x662F;&#x5426;&#x6765;&#x81EA;bundle*/);
+// &#x5C06;&#x65B0;&#x5C5E;&#x6027;&#x5217;&#x8868;&#x6DFB;&#x52A0;&#x5230; rw &#x4E2D;&#x7684;&#x5C5E;&#x6027;&#x5217;&#x8868;&#x6570;&#x7EC4;&#x4E2D;
+rw-&gt;properties.attachLists(proplists, propcount);
+// &#x91CA;&#x653E; proplists
+free(proplists); // &#x91CA;&#x653E; proplists
+// &#x5C06;&#x65B0;&#x534F;&#x8BAE;&#x5217;&#x8868;&#x6DFB;&#x52A0;&#x5230; rw &#x4E2D;&#x7684;&#x534F;&#x8BAE;&#x5217;&#x8868;&#x6570;&#x7EC4;&#x4E2D;
+rw-&gt;protocols.attachLists(protolists, protocount);
+// &#x91CA;&#x653E; protolists
+free(protolists); // &#x91CA;&#x653E; protolists
+// &#x5C06;&#x65B0;&#x534F;&#x8BAE;&#x5217;&#x8868;&#x6DFB;&#x52A0;&#x5230; rw &#x4E2D;&#x7684;&#x534F;&#x8BAE;&#x5217;&#x8868;&#x6570;&#x7EC4;&#x4E2D;
+rw-&gt;protocols.attachLists(protolists, protocount);
+// &#x91CA;&#x653E; protolists
+free(protolists);
+</code></pre>
                                 
                                 </section>
                             
@@ -876,7 +1127,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"2.2分类","level":"1.3.2","depth":2,"next":{"title":"2.4扩展","level":"1.3.3","depth":2,"path":"md/oc/2_4.md","ref":"md/oc/2_4.md","articles":[]},"previous":{"title":"2.1OC相关面试题","level":"1.3.1","depth":2,"path":"md/oc/2.1.md","ref":"md/oc/2.1.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"md/oc/2.2.md","mtime":"2019-04-25T13:39:43.177Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-21T11:05:20.149Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"2.2分类","level":"1.3.2","depth":2,"next":{"title":"2.4扩展","level":"1.3.3","depth":2,"path":"md/oc/2_4.md","ref":"md/oc/2_4.md","articles":[]},"previous":{"title":"2.1OC相关面试题","level":"1.3.1","depth":2,"path":"md/oc/2.1.md","ref":"md/oc/2.1.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"md/oc/2.2.md","mtime":"2019-04-27T13:48:27.282Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-27T08:13:34.296Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
