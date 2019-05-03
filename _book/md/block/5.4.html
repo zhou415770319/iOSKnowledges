@@ -832,7 +832,255 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <p>5.4.md</p>
+                                <h2 id="&#x5FAA;&#x73AF;&#x5F15;&#x7528;">&#x5FAA;&#x73AF;&#x5F15;&#x7528;</h2>
+<h1 id="&#x524D;&#x8A00;">&#x524D;&#x8A00;</h1>
+<p>iOS&#x4E2D;&#x4F7F;&#x7528;block&#x4F60;&#x4E00;&#x5B9A;&#x4F1A;&#x9047;&#x5230;&#x5FAA;&#x73AF;&#x5F15;&#x7528;&#x95EE;&#x9898;&#xFF0C;&#x89E3;&#x51B3;&#x7684;&#x529E;&#x6CD5;&#x4E5F;&#x5F88;&#x7B80;&#x5355;&#x4F7F;&#x7528;weak&#x5F31;&#x5F15;&#x7528;&#xFF0C;&#x4F46;&#x5BF9;&#x4E8E;&#x5F88;&#x591A;&#x7684;&#x5F00;&#x53D1;&#x8005;&#x5BF9;&#x4E8E;weak&#x6EE5;&#x7528;&#xFF0C;&#x800C;&#x4E14;weak self&#x5E76;&#x4E0D;&#x662F;&#x6CA1;&#x6709;&#x5F00;&#x9500;&#x7684;&#x4E00;&#x4EF6;&#x4E8B;&#x60C5;&#xFF0C;&#x540C;&#x65F6;&#x5BFC;&#x81F4;&#x4E00;&#x7CFB;&#x5217;&#x95EE;&#x9898;&#xFF0C;&#x6240;&#x4EE5;&#x672C;&#x6587;&#x5C06;&#x901A;&#x8FC7;&#x51E0;&#x79CD;&#x573A;&#x666F;&#x6765;&#x5206;&#x6790;&#xFF0C;&#x5728;&#x5E38;&#x89C1;&#x7684;&#x573A;&#x666F;&#x4E2D;&#x54EA;&#x4E9B;&#x5FC5;&#x987B;&#x4F7F;&#x7528;<strong>weak</strong> &#x54EA;&#x4E9B;&#x4E0D;&#x4F7F;&#x7528;&#x3002;&#x5982;&#x6709;&#x9519;&#x8BEF;&#x6216;&#x4E0D;&#x59A5;&#x6B22;&#x8FCE;&#x7559;&#x8A00;
+ &#x4EE3;&#x7801;&#x5728;<a href="https://link.jianshu.com?t=https://github.com/JarvanZhang007/weakSelfScenesUsingBlock" target="_blank">Github Example</a>
+ <strong>&#x3010;&#x6CE8;&#x610F;&#x3011;</strong> &#x672C;&#x7BC7;&#x4E3B;&#x8981;&#x8BB2;&#x89E3;&#x7684;&#x662F;ARC&#x4E0B;&#x5B9E;&#x7528;&#x573A;&#x666F;&#xFF0C;&#x60F3;&#x8981;&#x4E86;&#x89E3;block&#x539F;&#x7406;&#x7684;&#x670B;&#x53CB;&#x8BF7;&#x53C2;&#x8003;<a href="https://link.jianshu.com?t=http://blog.devtang.com/2013/07/28/a-look-inside-blocks/" target="_blank">&#x8C08;Objective-C block&#x7684;&#x5B9E;&#x73B0; &#x5510;&#x5DE7;</a></p>
+<h1 id="&#x5E38;&#x7528;&#x573A;&#x666F;">&#x5E38;&#x7528;&#x573A;&#x666F;</h1>
+<blockquote>
+<p>UINavigationController&#x4E24;&#x9875;&#x9762;&#x4F20;&#x9012;&#x53C2;&#x6570;&#x4F7F;&#x7528;block
+ UIViewAnimationWithBlocks &#x6267;&#x884C;&#x52A8;&#x753B;&#x7684;block
+ GCD&#x7684;block
+ NSArray enumerateObjectsUsingBlock
+ MJRefreshHeader &#x4E0B;&#x62C9;&#x5237;&#x65B0;&#x7684;block
+ AFNetworking &#x7684;Block</p>
+</blockquote>
+<h1 id="&#x573A;&#x666F;&#x5206;&#x6790;">&#x573A;&#x666F;&#x5206;&#x6790;</h1>
+<h4 id="uinavigationcontroller-scene">UINavigationController Scene</h4>
+<p><a href="https://link.jianshu.com?t=https://github.com/JarvanZhang007/weakSelfScenesUsingBlock/tree/master/JVNavigationControlScene" target="_blank">&#x4EE3;&#x7801;&#x8FD9;&#x91CC;</a>
+ &#x9996;&#x5148;&#x6211;&#x4EEC;&#x5728;Main.storyboard&#x4E2D;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;UINavigationViewController
+ &#x6307;&#x5B9A;&#x4E00;&#x4E2A;rootViewController</p>
+<p><img src="../../img/5-4-1.png" alt="img"></p>
+<p>pushVC1&#x8DF3;&#x8F6C;&#x4F7F;&#x7528;weak&#x7684;&#x5B9E;&#x4F8B; &#x3010;scene1ViewController&#x3011;</p>
+<p><img src="../../img/5-4-2.png" alt="img"></p>
+<p>scene1ViewController&#x4EE3;&#x7801;&#x5982;&#x4E0B;</p>
+<pre><code>class scene1ViewController: UIViewController {
+
+    @IBOutlet weak var textLabel: UILabel!
+    //&#x6301;&#x6709;&#x4E0B;&#x4E00;&#x4E2A;VC &#x51FA;&#x73B0;&#x5728;&#x4E0B;&#x4E00;&#x4E2A;VC&#x9700;&#x8981;&#x9891;&#x7E41;&#x4F7F;&#x7528;&#x5E76;&#x4E14;&#x9700;&#x8981;&#x5F88;&#x591A;&#x65F6;&#x95F4;&#x53BB;&#x52A0;&#x8F7D;&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x8BA9;&#x4E0B;&#x4E00;&#x4E2A;VC&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#x4FDD;&#x6301;&#x8DDF;&#x5F53;&#x524D;&#x4E00;&#x81F4;
+    var nextVC:nextViewController?
+
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+
+
+    @IBAction func pushClick(_ sender: UIButton) {
+            if nextVC == nil {
+            //&#x83B7;&#x53D6;storyboard&#x4E2D;&#x7684; ViewController
+            let story = UIStoryboard.init(name: &quot;Main&quot;, bundle: nil)
+            nextVC = story.instantiateViewController(withIdentifier: &quot;nextViewController&quot;) as? nextViewController
+
+            nextVC?.testBlock={[weak self] (param:String) in
+                self?.doSomething(str: param)
+            }
+        }
+        self.navigationController?.pushViewController(nextVC!, animated: true)
+    }
+
+    @IBAction func popClick(_ sender: UIButton) {
+        _ = self.navigationController?.popViewController(animated: true)
+    }
+
+
+    func doSomething(str:String){
+        self.textLabel.text=str
+    }
+
+
+    deinit {
+        print(&quot;scene1ViewController deinit&quot;)
+    }
+}
+</code></pre><h6 id="nextviewcontroller-&#x4EE3;&#x7801;&#x5982;&#x4E0B;">nextViewController &#x4EE3;&#x7801;&#x5982;&#x4E0B;</h6>
+<pre><code>    var testBlock:((_ para:String)-&gt;Void)?
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.title=&quot;&#x7B2C;&#x4E09;&#x4E2A;&#x63A7;&#x5236;&#x5668;&quot;
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+    @IBAction func popClick(_ sender: UIButton) {
+        if self.testBlock != nil {
+            self.testBlock?(&quot;next return String&quot;)
+        }
+       _ = self.navigationController?.popViewController(animated: true)
+    }
+</code></pre><h6 id="&#x5728;&#x6BCF;&#x4E00;&#x4E2A;viewcontroller&#x90FD;&#x91CD;&#x5199;deinit&#x65B9;&#x6CD5;">&#x5728;&#x6BCF;&#x4E00;&#x4E2A;ViewController&#x90FD;&#x91CD;&#x5199;deinit&#x65B9;&#x6CD5;</h6>
+<p>&#x7C7B;&#x4F3C;objective-c (void)dealloc &#x53EF;&#x4EE5;&#x76D1;&#x63A7;&#x5F53;&#x524D;VC&#x5728;pop&#x4E4B;&#x540E;&#x662F;&#x5426;&#x91CA;&#x653E;</p>
+<pre><code>    deinit {
+        print(&quot;scene1ViewController deinit&quot;)
+    }
+    deinit {
+        print(&quot; nextViewController deinit&quot;)
+    }
+</code></pre><p>&#x8FD0;&#x884C;&#x8D77;&#x6765;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x53EA;&#x6709;&#x5F53;scene1ViewController pop&#x7684;&#x65F6;&#x5019;nextViewController&#x548C;scene1ViewController &#x540C;&#x65F6;&#x91CA;&#x653E;&#x5E76;&#x6253;&#x5370;</p>
+<blockquote>
+<p>scene1ViewController deinit
+ nextViewController deinit</p>
+</blockquote>
+<p>&#x8FD9;&#x79CD;&#x573A;&#x666F;&#x4E0B;&#x5C31;&#x8981;&#x4F7F;&#x7528;weak&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x5C1D;&#x8BD5;&#x4E0D;&#x4F7F;&#x7528;weak&#x67E5;&#x770B; deinit &#x7684;&#x6253;&#x5370;&#x60C5;&#x51B5;</p>
+<h6 id="&#x5206;&#x6790;&#x5728;scene1-vc&#x4E2D;&#x6301;&#x6709;&#x4E86;nextvc&#x3001;&#x540C;&#x65F6;&#x4EE3;&#x7801;block&#x4E2D;&#x51FA;&#x73B0;&#x4E86;self&#x76F8;&#x5173;&#x7684;&#x5C5E;&#x6027;&#x548C;&#x65B9;&#x6CD5;-&#xFF0C;&#x5219;nextviewcontroller-&#x4F7F;&#x7528;&#x5C5E;&#x6027;&#x6301;&#x6709;&#x4E86;scene1--&#x9020;&#x6210;-&#x5FAA;&#x73AF;&#x5F15;&#x7528;">&#x5206;&#x6790;&#x5728;scene1 VC&#x4E2D;&#x6301;&#x6709;&#x4E86;nextVC&#x3001;&#x540C;&#x65F6;&#x4EE3;&#x7801;block&#x4E2D;&#x51FA;&#x73B0;&#x4E86;self&#x76F8;&#x5173;&#x7684;&#x5C5E;&#x6027;&#x548C;&#x65B9;&#x6CD5; &#xFF0C;&#x5219;nextViewController &#x4F7F;&#x7528;&#x5C5E;&#x6027;&#x6301;&#x6709;&#x4E86;scene1  &#x9020;&#x6210; <strong>&#x5FAA;&#x73AF;&#x5F15;&#x7528;</strong></h6>
+<blockquote>
+<p>scene1VC-&gt; nextVC
+ nextVC-&gt;self.dosomething</p>
+</blockquote>
+<pre><code> nextVC?.testBlock={[weak self] (param:String) in
+            self?.doSomething(str: param)
+        }
+</code></pre><p>pushVC2&#x8DF3;&#x8F6C;<strong>&#x4E0D;&#x4F7F;&#x7528;</strong>weak&#x7684;&#x5B9E;&#x4F8B; &#x3010;scene2ViewController&#x3011;</p>
+<p><img src="../../img/5-4-3.png" alt="img"></p>
+<p>scene2ViewController&#x4EE3;&#x7801;&#x5982;&#x4E0B;</p>
+<pre><code>class scene2ViewController: UIViewController {
+
+    @IBOutlet weak var textLabel: UILabel!
+
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.title=&quot;&#x4E0D;&#x4F7F;&#x7528;weak Scene&quot;
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+
+
+    @IBAction func pushClick(_ sender: UIButton) {
+        //&#x83B7;&#x53D6;storyboard&#x4E2D;&#x7684; ViewController
+        let story = UIStoryboard.init(name: &quot;Main&quot;, bundle: nil)
+       let nextVC = story.instantiateViewController(withIdentifier: &quot;nextViewController&quot;) as! nextViewController
+
+        nextVC.testBlock={(param:String) in
+            self.doSomething(str: param)
+        }
+
+        self.navigationController?.pushViewController(nextVC, animated: true)
+
+    }
+
+    @IBAction func popClick(_ sender: UIButton) {
+        _ = self.navigationController?.popViewController(animated: true)
+    }
+
+
+    func doSomething(str:String){
+        self.textLabel.text=str
+    }
+
+
+    deinit {
+        print(&quot;scene2ViewController deinit&quot;)
+    }
+}
+</code></pre><h5 id="&#x4E3A;&#x4EC0;&#x4E48;&#x5F53;&#x524D;&#x8FD9;&#x79CD;&#x6A21;&#x5F0F;&#x4E0D;&#x9700;&#x8981;&#x5462;&#xFF1F;">&#x4E3A;&#x4EC0;&#x4E48;&#x5F53;&#x524D;&#x8FD9;&#x79CD;&#x6A21;&#x5F0F;&#x4E0D;&#x9700;&#x8981;&#x5462;&#xFF1F;</h5>
+<blockquote>
+<p>navigationController -&gt;scene2 VC
+ navigationController -&gt;nextViewController
+ nextViewController -&gt;Scene2 VC</p>
+</blockquote>
+<p>&#x5728;scene2 VC &#x4E2D;&#x6CA1;&#x6709;&#x6301;&#x6709; nextViewController&#xFF0C;nextViewController&#x662F;&#x7531;navigationController&#x6301;&#x6709; ,nextViewController&#x867D;&#x7136;&#x6301;&#x6709;&#x4E86;Scene2 VC  nextViewController &#x5728;pop &#x7684;&#x65F6;&#x5019;&#x6267;&#x884C;&#x5B8C;&#x8FD9;&#x4E2A;block &#x5C31;&#x4F1A;&#x9500;&#x6BC1;&#xFF0C;&#x80FD;&#x6B63;&#x5E38;&#x91CA;&#x653E;&#x3002;
+ <strong>&#x4E0D;&#x4F1A;&#x5FAA;&#x73AF;&#x5F15;&#x7528;</strong></p>
+<h4 id="uiviewanimationwithblocks-&#x6267;&#x884C;&#x52A8;&#x753B;&#x7684;block">UIViewAnimationWithBlocks &#x6267;&#x884C;&#x52A8;&#x753B;&#x7684;block</h4>
+<p>&#x6211;&#x4EEC;&#x7ECF;&#x5E38;&#x770B;&#x5230;&#x5982;&#x4E0B;&#x4EE3;&#x7801;</p>
+<pre><code>[UIView animateWithDuration:0.25 animations:^{
+        self.testView.frame=CGRectMake(80, 100, self.testView.frame.size.width, self.testView.frame.size.height);
+    }];
+</code></pre><p>&#x8FD9;&#x91CC;&#x662F;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x5199;self&#x7684;&#xFF0C;&#x56E0;&#x4E3A;&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x7C7B;&#x65B9;&#x6CD5;&#xFF0C;&#x5F53;&#x524D;&#x7684;self&#x5E76;&#x6CA1;&#x6709;&#x76F4;&#x63A5;&#x6216;&#x95F4;&#x63A5;&#x6301;&#x6709;&#x8FD9;&#x4E2A;block&#x3002;&#x4E0D;&#x4F1A;&#x5FAA;&#x73AF;&#x5F15;&#x7528; &#x5F15;&#x7528;&#x793A;&#x610F;&#x56FE;</p>
+<blockquote>
+<p>animation framework -&gt; block
+ block -&gt; self</p>
+</blockquote>
+<h4 id="gcd&#x7684;block-&#x8DDF;uiviewanimationwithblocks&#x540C;&#x4E00;&#x4E2A;&#x9053;&#x7406;self&#x5E76;&#x4E0D;&#x4F1A;&#x6301;&#x6709;block-&#x6240;&#x4EE5;&#x4E0D;&#x4F1A;&#x5FAA;&#x73AF;&#x5E94;&#x7528;">GCD&#x7684;block &#x8DDF;UIViewAnimationWithBlocks&#x540C;&#x4E00;&#x4E2A;&#x9053;&#x7406;self&#x5E76;&#x4E0D;&#x4F1A;&#x6301;&#x6709;block, &#x6240;&#x4EE5;&#x4E0D;&#x4F1A;&#x5FAA;&#x73AF;&#x5E94;&#x7528;</h4>
+<blockquote>
+<p>GCD -&gt; block
+ block -&gt; self</p>
+</blockquote>
+<h4 id="nsarray-enumerateobjectsusingblock-&#x4E5F;&#x4E0D;&#x4F1A;&#x5F15;&#x8D77;&#x5FAA;&#x73AF;&#x5F15;&#x7528;">NSArray enumerateObjectsUsingBlock &#x4E5F;&#x4E0D;&#x4F1A;&#x5F15;&#x8D77;&#x5FAA;&#x73AF;&#x5F15;&#x7528;</h4>
+<pre><code> [self.dataArray enumerateObjectsUsingBlock:^(NSString *str, NSUInteger idx, BOOL * _Nonnull stop) {
+        [self dosomething:str];
+    }];
+</code></pre><blockquote>
+<p>Foundation framework-&gt; block
+ block -&gt; self</p>
+</blockquote>
+<h4 id="mjrefreshheader-&#x4E0B;&#x62C9;&#x5237;&#x65B0;&#x7684;block">MJRefreshHeader &#x4E0B;&#x62C9;&#x5237;&#x65B0;&#x7684;block</h4>
+<pre><code>    //&#x4E0B;&#x62C9;&#x5237;&#x65B0;
+    WEAKSELF;
+    self.tableView.mj_header=[MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [weakSelf dosomething];
+    }];
+</code></pre><p>&#x5728;&#x8FD9;&#x4E2A;&#x5B9E;&#x4F8B;&#x4E2D;&#xFF0C;&#x6211;&#x662F;&#x4F7F;&#x7528;weakSelf&#x7684;&#x539F;&#x56E0;&#x662F;&#x4EC0;&#x4E48;&#x5462;&#xFF1F;</p>
+<blockquote>
+<p>self-&gt;tableView
+ self.tableView-&gt;mj_header
+ mj_header.block-&gt;self</p>
+</blockquote>
+<h4 id="afnetworking-&#x7684;block">AFNetworking &#x7684;Block</h4>
+<p><a href="https://link.jianshu.com?t=https://github.com/JarvanZhang007/weakSelfScenesUsingBlock/tree/master/AFNetworingBlockScene" target="_blank">&#x6D4B;&#x8BD5;&#x4EE3;&#x7801;</a>
+ &#x9274;&#x4E8E;&#x5F53;&#x524D;&#x8FD9;&#x4E2A;&#x65F6;&#x95F4;&#x8282;&#x70B9;&#xFF0C;&#x5927;&#x5BB6;&#x90FD;&#x662F;&#x4F7F;&#x7528;AFNetworking 3.X&#x7684;&#x7248;&#x672C;&#xFF0C;&#x6240;&#x4EE5;&#x5F53;&#x524D;&#x5206;&#x6790;&#x57FA;&#x4E8E;3.0&#x4EE5;&#x4E0A;&#x7248;&#x672C;</p>
+<pre><code>    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+
+    [session GET:testURL parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@&quot;&#x8BF7;&#x6C42;&#x6210;&#x529F;---%@&quot;, responseObject);
+        self.testLabel.text=@&quot;&#x6210;&#x529F;&quot;;
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@&quot;%@&quot;,error);
+    }];
+</code></pre><p>AFNetworking &#x4E2D;success block &#x548C;failure block &#x901A;&#x8FC7;&#x5982;&#x4E0B;&#x8C03;&#x7528;&#x6808; &#x8BBE;&#x7F6E;&#x5230;&#x4E00;&#x4E2A;delegate&#x7684;&#x5BF9;&#x8C61;&#x4E0A;</p>
+<p><img src="../../img/5-4-4.png" alt="img"></p>
+<p>&#x6458;&#x5F55;AFNetworking &#x65B9;&#x4FBF;&#x5927;&#x5BB6;&#x5728;&#x6E90;&#x7801;&#x4E2D;&#x641C;&#x7D22;</p>
+<pre><code>- (void)addDelegateForDataTask:(NSURLSessionDataTask *)dataTask
+                uploadProgress:(nullable void (^)(NSProgress *uploadProgress)) uploadProgressBlock
+              downloadProgress:(nullable void (^)(NSProgress *downloadProgress)) downloadProgressBlock
+             completionHandler:(void (^)(NSURLResponse *response, id responseObject, NSError *error))completionHandler
+{
+    AFURLSessionManagerTaskDelegate *delegate = [[AFURLSessionManagerTaskDelegate alloc] init];
+    delegate.manager = self;
+    delegate.completionHandler = completionHandler;
+
+    dataTask.taskDescription = self.taskDescriptionForSessionTasks;
+    [self setDelegate:delegate forTask:dataTask];
+
+    delegate.uploadProgressBlock = uploadProgressBlock;
+    delegate.downloadProgressBlock = downloadProgressBlock;
+}
+</code></pre><p>&#x5728;NSURLSessionTaskDelegate &#x7684;&#x6267;&#x884C;&#x8FD9;&#x4E2A;block</p>
+<pre><code>#pragma mark - NSURLSessionTaskDelegate
+
+- (void)URLSession:(__unused NSURLSession *)session
+              task:(NSURLSessionTask *)task
+didCompleteWithError:(NSError *)error
+{
+........&#x6B64;&#x5904;&#x7701;&#x7565;
+            dispatch_group_async(manager.completionGroup ?: url_session_manager_completion_group(), manager.completionQueue ?: dispatch_get_main_queue(), ^{
+                if (self.completionHandler) {
+                    self.completionHandler(task.response, responseObject, serializationError);
+                }
+........&#x6B64;&#x5904;&#x7701;&#x7565;
+}
+</code></pre><p>&#x901A;&#x8FC7;&#x5927;&#x81F4;&#x5206;&#x6790;</p>
+<blockquote>
+<p>AFHTTPSessionManager -&gt; AFURLSessionManagerTaskDelegate
+ AFURLSessionManagerTaskDelegate -&gt;ViewController  block</p>
+</blockquote>
+<p>&#x672A;&#x53D1;&#x751F;&#x5FAA;&#x73AF;&#x5F15;&#x7528;&#x95EE;&#x9898; &#x6240;&#x4EE5;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x4F7F;&#x7528;self</p>
+<p>&#x6CE8;&#x610F; &#x5982;&#x4E0B;&#x4EE3;&#x7801; &#x6709;&#x9690;&#x85CF;&#x7684;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;&#x95EE;&#x9898;</p>
+<pre><code>AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+</code></pre><p>&#x611F;&#x5174;&#x8DA3;&#x7684;&#x670B;&#x53CB;&#x8BF7;&#x7FFB;&#x9605;&#x5982;&#x4E0B;&#x94FE;&#x63A5;&#xFF0C;&#x4E0D;&#x518D;&#x672C;&#x6587;&#x8BA8;&#x8BBA;&#x4E4B;&#x5217;
+ <a href="https://link.jianshu.com?t=https://github.com/facebook/AsyncDisplayKit/issues/763" target="_blank">NSURLSession is holding a strong reference to its delegate </a>
+ <a href="https://link.jianshu.com?t=https://github.com/AFNetworking/AFNetworking/issues/1528" target="_blank">Possible memory leak in AFURLSessionManager</a></p>
 
                                 
                                 </section>
@@ -876,7 +1124,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"5.4循环引用","level":"1.6.4","depth":2,"next":{"title":"6、多线程","level":"1.7","depth":1,"path":"md/duoxiancheng/6.md","ref":"md/duoxiancheng/6.md","articles":[{"title":"6.1GCD、nsoperation","level":"1.7.1","depth":2,"path":"md/duoxiancheng/6.1.md","ref":"md/duoxiancheng/6.1.md","articles":[]},{"title":"6.2资源共享","level":"1.7.2","depth":2,"path":"md/duoxiancheng/6.2.md","ref":"md/duoxiancheng/6.2.md","articles":[]},{"title":"6.3线程同步","level":"1.7.3","depth":2,"path":"md/duoxiancheng/6.3.md","ref":"md/duoxiancheng/6.3.md","articles":[]},{"title":"6.4SpinLock等","level":"1.7.4","depth":2,"path":"md/duoxiancheng/6.4.md","ref":"md/duoxiancheng/6.4.md","articles":[]}]},"previous":{"title":"5.3内存管理","level":"1.6.3","depth":2,"path":"md/block/5.3.md","ref":"md/block/5.3.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"md/block/5.4.md","mtime":"2019-04-26T04:08:03.367Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-21T11:05:20.149Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"5.4循环引用","level":"1.6.4","depth":2,"next":{"title":"6、多线程","level":"1.7","depth":1,"path":"md/duoxiancheng/6.md","ref":"md/duoxiancheng/6.md","articles":[{"title":"6.1GCD、nsoperation","level":"1.7.1","depth":2,"path":"md/duoxiancheng/6.1.md","ref":"md/duoxiancheng/6.1.md","articles":[]},{"title":"6.2资源共享","level":"1.7.2","depth":2,"path":"md/duoxiancheng/6.2.md","ref":"md/duoxiancheng/6.2.md","articles":[]},{"title":"6.3线程同步","level":"1.7.3","depth":2,"path":"md/duoxiancheng/6.3.md","ref":"md/duoxiancheng/6.3.md","articles":[]},{"title":"6.4SpinLock等","level":"1.7.4","depth":2,"path":"md/duoxiancheng/6.4.md","ref":"md/duoxiancheng/6.4.md","articles":[]}]},"previous":{"title":"5.3内存管理","level":"1.6.3","depth":2,"path":"md/block/5.3.md","ref":"md/block/5.3.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"md/block/5.4.md","mtime":"2019-05-03T13:38:19.391Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-05-03T13:08:40.699Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

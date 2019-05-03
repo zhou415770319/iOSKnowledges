@@ -832,7 +832,221 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <p>4.md</p>
+                                <h2 id="&#x5185;&#x5B58;&#x76F8;&#x5173;&#x9762;&#x8BD5;&#x9898;">&#x5185;&#x5B58;&#x76F8;&#x5173;&#x9762;&#x8BD5;&#x9898;</h2>
+<p>&#x5185;&#x5B58;&#x95EE;&#x9898;&#x4E3B;&#x8981;&#x5305;&#x62EC;&#x4E24;&#x4E2A;&#x90E8;&#x5206;&#xFF0C;&#x4E00;&#x4E2A;&#x662F;iOS&#x4E2D;&#x5E38;&#x89C1;&#x5FAA;&#x73AF;&#x5F15;&#x7528;&#x5BFC;&#x81F4;&#x7684;&#x5185;&#x5B58;&#x6CC4;&#x9732; &#xFF0C;&#x53E6;&#x5916;&#x5C31;&#x662F;&#x5927;&#x91CF;&#x6570;&#x636E;&#x52A0;&#x8F7D;&#x53CA;&#x4F7F;&#x7528;&#x5BFC;&#x81F4;&#x7684;&#x5185;&#x5B58;&#x8B66;&#x544A;&#x3002;</p>
+<h4 id="mmap">mmap</h4>
+<p>&#x867D;&#x7136;&#x82F9;&#x679C;&#x5E76;&#x6CA1;&#x6709;&#x660E;&#x786E;&#x6BCF;&#x4E2A; App &#x5728;&#x8FD0;&#x884C;&#x671F;&#x95F4;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x7684;&#x5185;&#x5B58;&#x6700;&#x5927;&#x503C;&#xFF0C;&#x4F46;&#x662F;&#x6709;&#x5F00;&#x53D1;&#x8005;&#x8FDB;&#x884C;&#x4E86;&#x5B9E;&#x9A8C;&#x548C;&#x7EDF;&#x8BA1;&#xFF0C;&#x4E00;&#x822C;&#x5728;&#x5360;&#x7528;&#x7CFB;&#x7EDF;&#x5185;&#x5B58;&#x8D85;&#x8FC7; 20% &#x7684;&#x65F6;&#x5019;&#x4F1A;&#x6709;&#x5185;&#x5B58;&#x8B66;&#x544A;&#xFF0C;&#x800C;&#x8D85;&#x8FC7; 50% &#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5C31;&#x5F88;&#x5BB9;&#x6613; Crash &#x4E86;&#xFF0C;&#x6240;&#x4EE5;&#x5185;&#x5B58;&#x4F7F;&#x7528;&#x7387;&#x8FD8;&#x662F;&#x5C3D;&#x91CF;&#x8981;&#x5C11;&#xFF0C;&#x5BF9;&#x4E8E;&#x6570;&#x636E;&#x91CF;&#x6BD4;&#x8F83;&#x5927;&#x7684;&#x5E94;&#x7528;&#xFF0C;&#x53EF;&#x4EE5;&#x91C7;&#x7528;&#x5206;&#x6B65;&#x52A0;&#x8F7D;&#x6570;&#x636E;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x6216;&#x8005;&#x91C7;&#x7528; mmap &#x65B9;&#x5F0F;&#x3002;mmap &#x662F;&#x4F7F;&#x7528;&#x903B;&#x8F91;&#x5185;&#x5B58;&#x5BF9;&#x78C1;&#x76D8;&#x6587;&#x4EF6;&#x8FDB;&#x884C;&#x6620;&#x5C04;&#xFF0C;&#x4E2D;&#x95F4;&#x53EA;&#x662F;&#x8FDB;&#x884C;&#x6620;&#x5C04;&#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x62F7;&#x8D1D;&#x64CD;&#x4F5C;&#xFF0C;&#x907F;&#x514D;&#x4E86;&#x5199;&#x6587;&#x4EF6;&#x7684;&#x6570;&#x636E;&#x62F7;&#x8D1D;&#x3002; &#x64CD;&#x4F5C;&#x5185;&#x5B58;&#x5C31;&#x76F8;&#x5F53;&#x4E8E;&#x5728;&#x64CD;&#x4F5C;&#x6587;&#x4EF6;&#xFF0C;&#x907F;&#x514D;&#x4E86;&#x5185;&#x6838;&#x7A7A;&#x95F4;&#x548C;&#x7528;&#x6237;&#x7A7A;&#x95F4;&#x7684;&#x9891;&#x7E41;&#x5207;&#x6362;&#xFF0C;&#x80FD;&#x591F;&#x63D0;&#x4F9B;&#x9AD8;&#x6027;&#x80FD;&#x7684;&#x5199;&#x5165;&#x901F;&#x5EA6;&#x3002;&#x6B64;&#x5916;&#xFF0C;mmap &#x53EF;&#x4EE5;&#x4FDD;&#x6301;&#x6570;&#x636E;&#x7684;&#x4E00;&#x81F4;&#x6027;&#xFF0C;&#x5373;&#x4F7F;&#x5728;&#x5BF9;&#x5E94;&#x7684;&#x7528;&#x6237;&#x8FDB;&#x7A0B;&#x5D29;&#x6E83;&#x540E;&#xFF0C;&#x5185;&#x5B58;&#x6620;&#x5C04;&#x7684;&#x6587;&#x4EF6;&#x4ECD;&#x7136;&#x53EF;&#x4EE5;&#x843D;&#x76D8;&#x3002;&#x53C2;&#x89C1;&#xFF1A;<a href="https://links.jianshu.com/go?to=https%3A%2F%2Fstackoverflow.com%2Fquestions%2F5902629%2Fmmap-msync-and-linux-process-termination" target="_blank">mmap &#x5B9E;&#x73B0;&#x6570;&#x636E;&#x4E00;&#x81F4;&#x6027;</a>&#x3002;&#x56E0;&#x4E3A;&#xFF0C;&#x7528;&#x6237;&#x8FDB;&#x7A0B;&#x5D29;&#x6E83;&#x540E;&#xFF0C;&#x5185;&#x6838;&#x4F1A;&#x6258;&#x7BA1; mmap &#x7684;&#x4EA4;&#x6362;&#x533A;&#xFF0C;&#x4FDD;&#x8BC1;&#x5BF9;&#x5E94;&#x7684;&#x6570;&#x636E;&#x80FD;&#x591F;&#x5B58;&#x76D8;&#x3002;sqlite &#x91CC;&#x4E5F;&#x4F7F;&#x7528; mmap &#x63D0;&#x9AD8;&#x6027;&#x80FD;&#x9632;&#x6B62;&#x4E22;&#x6570;&#x636E;&#x3002;</p>
+<h4 id="&#x5FAA;&#x73AF;&#x5F15;&#x7528;">&#x5FAA;&#x73AF;&#x5F15;&#x7528;</h4>
+<p>&#x5FAA;&#x73AF;&#x5F15;&#x7528;&#x662F; iOS &#x5F00;&#x53D1;&#x4E2D;&#x7ECF;&#x5E38;&#x9047;&#x5230;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x5C24;&#x5176;&#x5BF9;&#x4E8E;&#x65B0;&#x624B;&#x6765;&#x8BF4;&#x662F;&#x4E2A;&#x5934;&#x75BC;&#x7684;&#x95EE;&#x9898;&#x3002;&#x5FAA;&#x73AF;&#x5F15;&#x7528;&#x5BF9; App &#x6709;&#x6F5C;&#x5728;&#x7684;&#x5371;&#x5BB3;&#xFF0C;&#x4F1A;&#x4F7F;&#x5185;&#x5B58;&#x6D88;&#x8017;&#x8FC7;&#x9AD8;&#xFF0C;&#x6027;&#x80FD;&#x53D8;&#x5DEE;&#x548C; Crash &#x7B49;&#xFF0C;iOS &#x5E38;&#x89C1;&#x7684;&#x5185;&#x5B58;&#x4E3B;&#x8981;&#x4EE5;&#x4E0B;&#x4E09;&#x79CD;&#x60C5;&#x51B5;&#xFF1A;</p>
+<p>1&#xFF09;Delegate</p>
+<p>&#x4EE3;&#x7406;&#x534F;&#x8BAE;&#x662F;&#x4E00;&#x4E2A;&#x6700;&#x5178;&#x578B;&#x7684;&#x573A;&#x666F;&#xFF0C;&#x9700;&#x8981;&#x4F60;&#x4F7F;&#x7528;&#x5F31;&#x5F15;&#x7528;&#x6765;&#x907F;&#x514D;&#x5FAA;&#x73AF;&#x5F15;&#x7528;&#x3002;ARC &#x65F6;&#x4EE3;&#xFF0C;&#x9700;&#x8981;&#x5C06;&#x4EE3;&#x7406;&#x58F0;&#x660E;&#x4E3A; weak &#x662F;&#x4E00;&#x4E2A;&#x5373;&#x597D;&#x53C8;&#x5B89;&#x5168;&#x7684;&#x505A;&#x6CD5;&#xFF1A;</p>
+<pre><code>@property (nonatomic, weak) id &lt;MyCustomDelegate&gt; delegate;
+</code></pre><p>2&#xFF09;block</p>
+<p>Block &#x7684;&#x5FAA;&#x73AF;&#x5F15;&#x7528;&#xFF0C;&#x4E3B;&#x8981;&#x662F;&#x53D1;&#x751F;&#x5728; ViewController &#x4E2D;&#x6301;&#x6709;&#x4E86; block&#xFF0C;&#x6BD4;&#x5982;&#xFF1A;</p>
+<pre><code>@property (nonatomic, copy) LFCallbackBlock callbackBlock;
+</code></pre><p>&#x540C;&#x65F6;&#x5728;&#x5BF9; callbackBlock &#x8FDB;&#x884C;&#x8D4B;&#x503C;&#x7684;&#x65F6;&#x5019;&#x53C8;&#x8C03;&#x7528;&#x4E86; ViewController &#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x6BD4;&#x5982;&#xFF1A;</p>
+<pre><code>    self.callbackBlock = ^{
+        [self doSomething];
+    }];
+</code></pre><p>&#x5C31;&#x4F1A;&#x53D1;&#x751F;&#x5FAA;&#x73AF;&#x5F15;&#x7528;&#xFF0C;&#x56E0;&#x4E3A;&#xFF1A;ViewController -&gt; &#x5F3A;&#x5F15;&#x7528;&#x4E86; callback -&gt; &#x5F3A;&#x5F15;&#x7528;&#x4E86; ViewController&#xFF0C;&#x89E3;&#x51B3;&#x65B9;&#x6CD5;&#x4E5F;&#x5F88;&#x7B80;&#x5355;&#xFF1A;</p>
+<pre><code>    __weak __typeof(self) weakSelf = self;
+    self.callbackBlock = ^{
+      [weakSelf doSomething];
+    }];
+</code></pre><p>&#x539F;&#x56E0;&#x662F;&#x4F7F;&#x7528; MRC &#x7BA1;&#x7406;&#x5185;&#x5B58;&#x65F6;&#xFF0C;Block &#x7684;&#x5185;&#x5B58;&#x7BA1;&#x7406;&#x9700;&#x8981;&#x533A;&#x5206;&#x662F; Global(&#x5168;&#x5C40;)&#x3001;Stack(&#x6808;)&#x8FD8;&#x662F; Heap(&#x5806;)&#xFF0C;&#x800C;&#x5728;&#x4F7F;&#x7528;&#x4E86; ARC &#x4E4B;&#x540E;&#xFF0C;&#x82F9;&#x679C;&#x81EA;&#x52A8;&#x4F1A;&#x5C06;&#x6240;&#x6709;&#x539F;&#x672C;&#x5E94;&#x8BE5;&#x653E;&#x5728;&#x6808;&#x4E2D;&#x7684; Block &#x5168;&#x90E8;&#x653E;&#x5230;&#x5806;&#x4E2D;&#x3002;&#x5168;&#x5C40;&#x7684; Block &#x6BD4;&#x8F83;&#x7B80;&#x5355;&#xFF0C;&#x51E1;&#x662F;&#x6CA1;&#x6709;&#x5F15;&#x7528;&#x5230; Block &#x4F5C;&#x7528;&#x57DF;&#x5916;&#x9762;&#x7684;&#x53C2;&#x6570;&#x7684; Block &#x90FD;&#x4F1A;&#x653E;&#x5230;&#x5168;&#x5C40;&#x5185;&#x5B58;&#x5757;&#x4E2D;&#xFF0C;&#x5728;&#x5168;&#x5C40;&#x5185;&#x5B58;&#x5757;&#x7684; Block &#x4E0D;&#x7528;&#x8003;&#x8651;&#x5185;&#x5B58;&#x7BA1;&#x7406;&#x95EE;&#x9898;&#x3002;(&#x653E;&#x5728;&#x5168;&#x5C40;&#x5185;&#x5B58;&#x5757;&#x662F;&#x4E3A;&#x4E86;&#x5728;&#x4E4B;&#x540E;&#x518D;&#x6B21;&#x8C03;&#x7528;&#x8BE5; Block &#x65F6;&#x80FD;&#x5FEB;&#x901F;&#x53CD;&#x5E94;&#xFF0C;&#x5F53;&#x7136;&#x6CA1;&#x6709;&#x8C03;&#x7528;&#x5916;&#x90E8;&#x53C2;&#x6570;&#x7684; Block &#x6839;&#x672C;&#x4E0D;&#x4F1A;&#x51FA;&#x73B0;&#x5185;&#x5B58;&#x7BA1;&#x7406;&#x95EE;&#x9898;)&#x3002;</p>
+<p>&#x6240;&#x4EE5; Block &#x7684;&#x5185;&#x5B58;&#x7BA1;&#x7406;&#x51FA;&#x73B0;&#x95EE;&#x9898;&#x7684;&#xFF0C;&#x7EDD;&#x5927;&#x90E8;&#x5206;&#x90FD;&#x662F;&#x5728;&#x5806;&#x5185;&#x5B58;&#x4E2D;&#x7684; Block &#x51FA;&#x73B0;&#x4E86;&#x95EE;&#x9898;&#x3002;&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;Block &#x521D;&#x59CB;&#x5316;&#x90FD;&#x662F;&#x5728;&#x6808;&#x4E0A;&#x7684;&#xFF0C;&#x4F46;&#x53EF;&#x80FD;&#x968F;&#x65F6;&#x88AB;&#x6536;&#x56DE;&#xFF0C;&#x901A;&#x8FC7;&#x5C06; Block &#x7C7B;&#x578B;&#x58F0;&#x660E;&#x4E3A; copy &#x7C7B;&#x578B;&#xFF0C;&#x8FD9;&#x6837;&#x5BF9; Block &#x8D4B;&#x503C;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4F1A;&#x8FDB;&#x884C; copy &#x64CD;&#x4F5C;&#xFF0C;copy &#x5230;&#x5806;&#x4E0A;&#xFF0C;&#x5982;&#x679C;&#x91CC;&#x9762;&#x6709;&#x5BF9; self &#x7684;&#x5F15;&#x7528;&#xFF0C;&#x5219;&#x4F1A;&#x6709;&#x4E00;&#x4E2A;&#x5F3A;&#x5F15;&#x7528;&#x7684;&#x6307;&#x9488;&#x6307;&#x5411; self&#xFF0C;&#x5C31;&#x4F1A;&#x53D1;&#x751F;&#x5FAA;&#x73AF;&#x5F15;&#x7528;&#xFF0C;&#x5982;&#x679C;&#x91C7;&#x7528; weakSelf&#xFF0C;&#x5185;&#x90E8;&#x4E0D;&#x4F1A;&#x6709;&#x5F3A;&#x7C7B;&#x578B;&#x7684;&#x6307;&#x9488;&#xFF0C;&#x6240;&#x4EE5;&#x53EF;&#x4EE5;&#x89E3;&#x51B3;&#x5FAA;&#x73AF;&#x5F15;&#x7528;&#x95EE;&#x9898;&#x3002;</p>
+<p>&#x90A3;&#x662F;&#x4E0D;&#x662F;&#x6240;&#x6709;&#x7684; block &#x90FD;&#x4F1A;&#x53D1;&#x751F;&#x5FAA;&#x73AF;&#x5F15;&#x7528;&#x5462;&#xFF1F;&#x5176;&#x5B9E;&#x4E0D;&#x7136;&#xFF0C;&#x6BD4;&#x5982; UIView &#x7684;&#x7C7B;&#x65B9;&#x6CD5; Block &#x52A8;&#x753B;&#xFF0C;NSArray &#x7B49;&#x7684;&#x7C7B;&#x7684;&#x904D;&#x5386;&#x65B9;&#x6CD5;&#xFF0C;&#x4E5F;&#x90FD;&#x4E0D;&#x4F1A;&#x53D1;&#x751F;&#x5FAA;&#x73AF;&#x5F15;&#x7528;&#xFF0C;&#x56E0;&#x4E3A;&#x5F53;&#x524D;&#x63A7;&#x5236;&#x5668;&#x4E00;&#x822C;&#x4E0D;&#x4F1A;&#x5F3A;&#x5F15;&#x7528;&#x4E00;&#x4E2A;&#x7C7B;&#x3002;</p>
+<p>&#x6B64;&#x5916;&#xFF0C;&#x8FD8;&#x6709;&#x4E00;&#x79CD;&#x60C5;&#x51B5;&#x662F;&#x5728; self.callbackBlock &#x4E2D;&#x4F7F;&#x7528;&#x4E86; ivar&#xFF0C;&#x4E5F;&#x4F1A;&#x9020;&#x6210;&#x5FAA;&#x73AF;&#x5F15;&#x7528;&#x3002;&#x56E0;&#x4E3A;&#x5BF9; ivar &#x53D8;&#x91CF;&#x7684;&#x76F4;&#x63A5;&#x8BBF;&#x95EE;&#x8FD8;&#x662F;&#x4F1A;&#x4F9D;&#x8D56; self &#x7684;&#x7F16;&#x8BD1;&#x5730;&#x5740;&#x518D;&#x8FDB;&#x884C;&#x504F;&#x79FB;&#x3002;</p>
+<p>3&#xFF09;NSTimer</p>
+<p>NSTimer &#x6211;&#x4EEC;&#x5F00;&#x53D1;&#x4E2D;&#x4F1A;&#x7528;&#x5230;&#x5F88;&#x591A;&#xFF0C;&#x6BD4;&#x5982;&#x4E0B;&#x9762;&#x4E00;&#x6BB5;&#x4EE3;&#x7801;&#xFF1A;</p>
+<pre><code>    - (void)viewDidLoad {
+        [super viewDidLoad];
+        self.myTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(doSomeThing) userInfo:nil repeats:YES];
+    }
+    - (void)doSomeThing {
+    }
+    - (void)dealloc {
+         [self.timer invalidate];
+         self.timer = nil;
+    }
+</code></pre><p>&#x8FD9;&#x662F;&#x5178;&#x578B;&#x7684;&#x5FAA;&#x73AF;&#x5F15;&#x7528;&#xFF0C;&#x56E0;&#x4E3A; timer &#x4F1A;&#x5F3A;&#x5F15;&#x7528; self&#xFF0C;&#x800C; self &#x53C8;&#x6301;&#x6709;&#x4E86; timer&#xFF0C;&#x6240;&#x6709;&#x5C31;&#x9020;&#x6210;&#x4E86;&#x5FAA;&#x73AF;&#x5F15;&#x7528;&#x3002;&#x90A3;&#x6709;&#x4EBA;&#x53EF;&#x80FD;&#x4F1A;&#x8BF4;&#xFF0C;&#x6211;&#x4F7F;&#x7528;&#x4E00;&#x4E2A; weak &#x6307;&#x9488;&#xFF0C;&#x6BD4;&#x5982;&#xFF1A;</p>
+<pre><code>    __weak typeof(self) weakSelf = self;
+    self.myTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:weakSelf selector:@selector(doSomeThing) userInfo:nil repeats:YES];
+</code></pre><p>&#x4F46;&#x662F;&#x5176;&#x5B9E;&#x5E76;&#x6CA1;&#x6709;&#x7528;&#xFF0C;&#x56E0;&#x4E3A;&#x4E0D;&#x7BA1;&#x662F; weakSelf &#x8FD8;&#x662F; strongSelf&#xFF0C;&#x6700;&#x7EC8;&#x5728; NSTimer &#x5185;&#x90E8;&#x90FD;&#x4F1A;&#x91CD;&#x65B0;&#x751F;&#x6210;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x6307;&#x9488;&#x6307;&#x5411; self&#xFF0C;&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x5F3A;&#x5F15;&#x7528;&#x7684;&#x6307;&#x9488;&#xFF0C;&#x7ED3;&#x679C;&#x5C31;&#x4F1A;&#x5BFC;&#x81F4;&#x5FAA;&#x73AF;&#x5F15;&#x7528;&#x3002;&#x90A3;&#x600E;&#x4E48;&#x89E3;&#x51B3;&#x5462;&#xFF1F;&#x4E3B;&#x8981;&#x6709;&#x5982;&#x4E0B;&#x4E09;&#x79CD;&#x65B9;&#x5F0F;&#xFF1A;</p>
+<p>3.1&#xFF09;&#x4F7F;&#x7528;&#x4E2D;&#x95F4;&#x7C7B;</p>
+<p>&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x7EE7;&#x627F; NSObject &#x7684;&#x5B50;&#x7C7B; MyTimerTarget&#xFF0C;&#x5E76;&#x521B;&#x5EFA;&#x5F00;&#x542F;&#x8BA1;&#x65F6;&#x5668;&#x7684;&#x65B9;&#x6CD5;&#x3002;</p>
+<pre><code>    // MyTimerTarget.h
+    #import &lt;Foundation/Foundation.h&gt;
+    @interface MyTimerTarget : NSObject
+    + (NSTimer *)scheduledTimerWithTimeInterval:(NSTimeInterval)interval target:(id)target selector:(SEL)selector userInfo:(id)userInfo repeats:(BOOL)repeats;
+    @end
+    // MyTimerTarget.m
+    #import &quot;MyTimerTarget.h&quot;
+    @interface MyTimerTarget ()
+    @property (assign, nonatomic) SEL outSelector;
+    @property (weak, nonatomic) id outTarget;
+    @end
+    @implementation MyTimerTarget
+    + (NSTimer *)scheduledTimerWithTimeInterval:(NSTimeInterval)interval target:(id)target selector:(SEL)selector userInfo:(id)userInfo repeats:(BOOL)repeats {
+        MyTimerTarget *timerTarget = [[MyTimerTarget alloc] init];
+        timerTarget.outTarget = target;
+        timerTarget.outSelector = selector;
+        NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:interval target:timerTarget selector:@selector(timerSelector:) userInfo:userInfo repeats:repeats];
+        return timer;
+    }
+    - (void)timerSelector:(NSTimer *)timer {
+        if (self.outTarget &amp;&amp; [self.outTarget respondsToSelector:self.outSelector]) {
+            [self.outTarget performSelector:self.outSelector withObject:timer.userInfo];
+        } else {
+            [timer invalidate];
+        }
+    }
+    @end
+    // &#x8C03;&#x7528;&#x65B9;
+    @property (strong, nonatomic) NSTimer *myTimer;
+    - (void)viewDidLoad {
+        [super viewDidLoad];
+        self.myTimer = [MyTimerTarget scheduledTimerWithTimeInterval:1 target:self selector:@selector(doSomething) userInfo:nil repeats:YES];
+    }
+    - (void)doSomeThing {
+    }
+    - (void)dealloc {
+        NSLog(@&quot;MyViewController dealloc&quot;);
+    }
+</code></pre><p>VC &#x5F3A;&#x5F15;&#x7528; timer&#xFF0C;&#x56E0;&#x4E3A; timer &#x7684; target &#x662F; MyTimerTarget &#x5B9E;&#x4F8B;&#xFF0C;&#x6240;&#x4EE5; timer &#x5F3A;&#x5F15;&#x7528; MyTimerTarget &#x5B9E;&#x4F8B;&#xFF0C;&#x800C; MyTimerTarget &#x5B9E;&#x4F8B;&#x5F31;&#x5F15;&#x7528; VC&#xFF0C;&#x89E3;&#x9664;&#x5FAA;&#x73AF;&#x5F15;&#x7528;&#x3002;&#x8FD9;&#x79CD;&#x65B9;&#x6848; VC &#x5728;&#x9000;&#x51FA;&#x65F6;&#x90FD;&#x4E0D;&#x7528;&#x7BA1; timer&#xFF0C;&#x56E0;&#x4E3A;&#x81EA;&#x5DF1;&#x91CA;&#x653E;&#x540E;&#x81EA;&#x7136;&#x4F1A;&#x89E6;&#x53D1; <code>timerSelector:</code>&#x4E2D;&#x7684;<code>[timer invalidate]</code>&#x903B;&#x8F91;&#xFF0C;timer &#x4E5F;&#x4F1A;&#x88AB;&#x91CA;&#x653E;&#x3002;</p>
+<p>3.2&#xFF09;&#x4F7F;&#x7528;&#x7C7B;&#x65B9;&#x6CD5;</p>
+<p>&#x6211;&#x4EEC;&#x8FD8;&#x53EF;&#x4EE5;&#x5BF9; NSTimer &#x505A;&#x4E00;&#x4E2A; category&#xFF0C;&#x901A;&#x8FC7; block &#x5C06; timer &#x7684; target &#x548C; selector &#x7ED1;&#x5B9A;&#x5230;&#x4E00;&#x4E2A;&#x7C7B;&#x65B9;&#x6CD5;&#x4E0A;&#xFF0C;&#x6765;&#x5B9E;&#x73B0;&#x89E3;&#x9664;&#x5FAA;&#x73AF;&#x5F15;&#x7528;&#x3002;</p>
+<pre><code>    // NSTimer+MyUtil.h
+    #import &lt;Foundation/Foundation.h&gt;
+    @interface NSTimer (MyUtil)
+    + (NSTimer *)MyUtil_scheduledTimerWithTimeInterval:(NSTimeInterval)interval block:(void(^)())block repeats:(BOOL)repeats;
+    @end
+    // NSTimer+MyUtil.m
+    #import &quot;NSTimer+MyUtil.h&quot;
+    @implementation NSTimer (MyUtil)
+    + (NSTimer *)MyUtil_scheduledTimerWithTimeInterval:(NSTimeInterval)interval block:(void(^)())block repeats:(BOOL)repeats {
+        return [self scheduledTimerWithTimeInterval:interval target:self selector:@selector(MyUtil_blockInvoke:) userInfo:[block copy] repeats:repeats];
+    }
+    + (void)MyUtil_blockInvoke:(NSTimer *)timer {
+        void (^block)() = timer.userInfo;
+        if (block) {
+            block();
+        }
+    }
+    @end
+    // &#x8C03;&#x7528;&#x65B9;
+    @property (strong, nonatomic) NSTimer *myTimer;
+    - (void)viewDidLoad {
+        [super viewDidLoad];
+        self.myTimer = [NSTimer MyUtil_scheduledTimerWithTimeInterval:1 block:^{
+            NSLog(@&quot;doSomething&quot;);
+        } repeats:YES];
+    }
+    - (void)dealloc {
+        if (_myTimer) {
+            [_myTimer invalidate];
+        }
+        NSLog(@&quot;MyViewController dealloc&quot;);
+    }
+</code></pre><p>&#x8FD9;&#x79CD;&#x65B9;&#x6848;&#x4E0B;&#xFF0C;VC &#x5F3A;&#x5F15;&#x7528; timer&#xFF0C;&#x4F46;&#x662F;&#x4E0D;&#x4F1A;&#x88AB; timer &#x5F3A;&#x5F15;&#x7528;&#xFF0C;&#x4F46;&#x6709;&#x4E2A;&#x95EE;&#x9898;&#x662F; VC &#x9000;&#x51FA;&#x88AB;&#x91CA;&#x653E;&#x65F6;&#xFF0C;&#x5982;&#x679C;&#x8981;&#x505C;&#x6389; timer &#x9700;&#x8981;&#x81EA;&#x5DF1;&#x8C03;&#x7528;&#x4E00;&#x4E0B; timer &#x7684; invalidate &#x65B9;&#x6CD5;&#x3002;</p>
+<p>3.2&#xFF09;&#x4F7F;&#x7528; weakProxy</p>
+<p>&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x7EE7;&#x627F; NSProxy &#x7684;&#x5B50;&#x7C7B; MyProxy&#xFF0C;&#x5E76;&#x5B9E;&#x73B0;&#x6D88;&#x606F;&#x8F6C;&#x53D1;&#x7684;&#x76F8;&#x5173;&#x65B9;&#x6CD5;&#x3002;NSProxy &#x662F; iOS &#x5F00;&#x53D1;&#x4E2D;&#x4E00;&#x4E2A;&#x6D88;&#x606F;&#x8F6C;&#x53D1;&#x7684;&#x57FA;&#x7C7B;&#xFF0C;&#x5B83;&#x4E0D;&#x7EE7;&#x627F;&#x81EA; NSObject&#x3002;&#x56E0;&#x4E3A;&#x4ED6;&#x4E5F;&#x662F; Foundation &#x6846;&#x67B6;&#x4E2D;&#x7684;&#x57FA;&#x7C7B;, &#x901A;&#x5E38;&#x7528;&#x6765;&#x5B9E;&#x73B0;&#x6D88;&#x606F;&#x8F6C;&#x53D1;, &#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x7528;&#x5B83;&#x6765;&#x5305;&#x88C5; NSTimer &#x7684; target, &#x8FBE;&#x5230;&#x5F31;&#x5F15;&#x7528;&#x7684;&#x6548;&#x679C;&#x3002;</p>
+<pre><code>    // MyProxy.h
+    #import &lt;Foundation/Foundation.h&gt;
+    @interface MyProxy : NSProxy
+    + (instancetype)proxyWithTarget:(id)target;
+    @end
+    // MyProxy.m
+    #import &quot;MyProxy.h&quot;
+    @interface MyProxy ()
+    @property (weak, readonly, nonatomic) id weakTarget;
+    @end
+    @implementation MyProxy
+    + (instancetype)proxyWithTarget:(id)target {
+        return [[MyProxy alloc] initWithTarget:target];
+    }
+    - (instancetype)initWithTarget:(id)target {
+        _weakTarget = target;
+        return self;
+    }
+    - (void)forwardInvocation:(NSInvocation *)invocation {
+        SEL sel = [invocation selector];
+        if (_weakTarget &amp;&amp; [self.weakTarget respondsToSelector:sel]) {
+            [invocation invokeWithTarget:self.weakTarget];
+        }
+    }
+    - (NSMethodSignature *)methodSignatureForSelector:(SEL)sel {
+        return [self.weakTarget methodSignatureForSelector:sel];
+    }
+    - (BOOL)respondsToSelector:(SEL)aSelector {
+        return [self.weakTarget respondsToSelector:aSelector];
+    }
+    @end
+    // &#x8C03;&#x7528;&#x65B9;
+    @property (strong, nonatomic) NSTimer *myTimer;
+    - (void)viewDidLoad {
+        [super viewDidLoad];
+        self.myTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:[MyProxy proxyWithTarget:self] selector:@selector(doSomething) userInfo:nil repeats:YES];
+    }
+    - (void)dealloc {
+        if (_myTimer) {
+            [_myTimer invalidate];
+        }
+        NSLog(@&quot;MyViewController dealloc&quot;);
+    }
+</code></pre><p>&#x4E0A;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x4E2D;&#xFF0C;&#x4E86;&#x89E3;&#x4E00;&#x4E0B;&#x6D88;&#x606F;&#x8F6C;&#x53D1;&#x7684;&#x8FC7;&#x7A0B;&#x5C31;&#x53EF;&#x4EE5;&#x77E5;&#x9053; -forwardInvocation: &#x662F;&#x4F1A;&#x6709;&#x4E00;&#x4E2A; NSInvocation &#x5BF9;&#x8C61;&#xFF0C;&#x8FD9;&#x4E2A; NSInvocation &#x5BF9;&#x8C61;&#x4FDD;&#x5B58;&#x4E86;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#x7684;&#x6240;&#x6709;&#x4FE1;&#x606F;&#xFF0C;&#x5305;&#x62EC; Selector &#x540D;&#xFF0C;&#x53C2;&#x6570;&#x548C;&#x8FD4;&#x56DE;&#x503C;&#x7C7B;&#x578B;&#xFF0C;&#x6700;&#x91CD;&#x8981;&#x7684;&#x662F;&#x6709;&#x6240;&#x6709;&#x53C2;&#x6570;&#x503C;&#xFF0C;&#x53EF;&#x4EE5;&#x4ECE;&#x8FD9;&#x4E2A; NSInvocation &#x5BF9;&#x8C61;&#x91CC;&#x62FF;&#x5230;&#x8C03;&#x7528;&#x7684;&#x6240;&#x6709;&#x53C2;&#x6570;&#x503C;&#x3002;&#x8FD9;&#x65F6;&#x5019;&#x6211;&#x4EEC;&#x628A;&#x8F6C;&#x53D1;&#x8FC7;&#x6765;&#x7684;&#x6D88;&#x606F;&#x548C; weakTarget &#x7684; selector &#x4FE1;&#x606F;&#x505A;&#x5BF9;&#x6BD4;&#xFF0C;&#x7136;&#x540E;&#x8F6C;&#x53D1;&#x8FC7;&#x53BB;&#x5373;&#x53EF;&#x3002;</p>
+<p>&#x8FD9;&#x91CC;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;&#xFF0C;&#x5728;&#x8C03;&#x7528;&#x65B9;&#x7684; dealloc &#x4E2D;&#x4E00;&#x5B9A;&#x8981;&#x8C03;&#x7528; timer &#x7684; invalidate &#x65B9;&#x6CD5;&#xFF0C;&#x56E0;&#x4E3A;&#x5982;&#x679C;&#x8FD9;&#x91CC;&#x4E0D;&#x6E05;&#x7406; timer&#xFF0C;&#x8FD9;&#x4E2A;&#x8C03;&#x7528;&#x65B9; dealloc &#x88AB;&#x91CA;&#x653E;&#x540E;&#xFF0C;&#x6D88;&#x606F;&#x8F6C;&#x53D1;&#x5C31;&#x627E;&#x4E0D;&#x5230;&#x63A5;&#x6536;&#x65B9;&#x4E86;&#xFF0C;&#x5C31;&#x4F1A; crash&#x3002;</p>
+<p>3.3&#xFF09;&#x4F7F;&#x7528; GCD timer</p>
+<p>GCD &#x63D0;&#x4F9B;&#x7684;&#x5B9A;&#x65F6;&#x5668;&#x53EB; dispatch_source_t&#x3002;&#x4F7F;&#x7528;&#x65B9;&#x5F0F;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code>    // &#x8C03;&#x7528;&#x65B9;
+    @property (strong, nonatomic) dispatch_source_t myGCDTimer;
+    - (void)viewDidLoad {
+        [super viewDidLoad];
+        dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0));
+        if (timer) {
+            self.myGCDTimer = timer;
+            dispatch_source_set_timer(timer, dispatch_walltime(NULL, 0), 1 * NSEC_PER_SEC, 1ull * NSEC_PER_SEC);
+            dispatch_source_set_event_handler(timer, ^ {
+                NSLog(@&quot;doSomething&quot;);
+            });
+            dispatch_resume(timer);
+        }
+    }
+    - (void)dealloc {
+        if (_myGCDTimer) {
+            dispatch_cancel(_myGCDTimer);
+        }
+        NSLog(@&quot;MyViewController dealloc&quot;);
+    }
+</code></pre><p>&#x66F4;&#x591A;&#x8BE6;&#x60C5;&#x89C1;&#xFF1A;<a href="https://www.jianshu.com/p/aaf7b13864d9" target="_blank">NSTimer &#x5FAA;&#x73AF;&#x5F15;&#x7528;&#x89E3;&#x51B3;&#x65B9;&#x6848;</a></p>
+<h4 id="&#x5176;&#x4ED6;&#x5185;&#x5B58;&#x95EE;&#x9898;">&#x5176;&#x4ED6;&#x5185;&#x5B58;&#x95EE;&#x9898;</h4>
+<ul>
+<li>NSNotification addObserver &#x4E4B;&#x540E;&#xFF0C;&#x8BB0;&#x5F97;&#x5728; dealloc &#x91CC;&#x9762;&#x6DFB;&#x52A0; remove&#x3002;</li>
+<li>&#x52A8;&#x753B;&#x7684; repeat count &#x65E0;&#x9650;&#x5927;&#xFF0C;&#x800C;&#x4E14;&#x4E5F;&#x4E0D;&#x4E3B;&#x52A8;&#x505C;&#x6B62;&#x52A8;&#x753B;&#xFF0C;&#x57FA;&#x672C;&#x5C31;&#x7B49;&#x4E8E;&#x65E0;&#x9650;&#x5FAA;&#x73AF;&#x4E86;&#x3002;</li>
+<li>forwardingTargetForSelector &#x8FD4;&#x56DE;&#x4E86; self&#x3002;</li>
+</ul>
+<h4 id="&#x9AD8;&#x6027;&#x80FD;&#x5730;&#x4F7F;&#x7528;&#x5185;&#x5B58;&#x7684;&#x5EFA;&#x8BAE;">&#x9AD8;&#x6027;&#x80FD;&#x5730;&#x4F7F;&#x7528;&#x5185;&#x5B58;&#x7684;&#x5EFA;&#x8BAE;</h4>
+<ul>
+<li>&#x719F;&#x8BFB; <a href="https://links.jianshu.com/go?to=http%3A%2F%2Fclang.llvm.org%2Fdocs%2FAutomaticReferenceCounting.html" target="_blank">ARC &#x673A;&#x5236;&#x539F;&#x7406;</a>&#x3002;</li>
+<li>&#x4F7F;&#x7528; <code>weak</code> &#x4FEE;&#x9970;&#x66FF;&#x6362; <code>unsafe_unretain</code>&#x3002;</li>
+<li>&#x5C0F;&#x5FC3;&#x65B9;&#x6CD5;&#x4E2D;&#x7684; self&#xFF0C;&#x5728; Objective-C &#x7684;&#x65B9;&#x6CD5;&#x4E2D;&#x9690;&#x542B;&#x7684; self &#x662F; <code>__unsafed_unretain</code> &#x7684;&#x3002;</li>
+<li>&#x4F7F;&#x7528; Autorelease Pool &#x6765;&#x964D;&#x4F4E;&#x5FAA;&#x73AF;&#x4E2D;&#x7684;&#x5185;&#x5B58;&#x5CF0;&#x503C;&#xFF0C;&#x907F;&#x514D; OOM&#x3002;</li>
+<li>&#x8981;&#x5904;&#x7406; Memory Warning&#x3002;</li>
+<li>&#x9700;&#x8981;&#x5728;&#x6536;&#x5230;&#x5185;&#x5B58;&#x8B66;&#x544A;&#x7684;&#x65F6;&#x5019;&#x91CA;&#x653E;&#x7684;&#x7F13;&#x5B58;&#x7C7B;&#x6570;&#x636E;&#xFF0C;&#x5728;&#x9009;&#x7528;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x65F6;&#xFF0C;&#x7528; NSCache &#x4EE3;&#x66FF; NSDictionary&#xFF0C;&#x4F7F;&#x7528; NSPurgableData &#x4EE3;&#x66FF; NSData&#x3002;&#x5728;&#x5176;&#x4ED6;&#x5E38;&#x89C1;&#x7684;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x4E0A;&#xFF0C;&#x7531;&#x4E8E;&#x5C40;&#x90E8;&#x6027;&#x539F;&#x7406;&#xFF0C;OS &#x4F1A;&#x5C06;&#x4E0D;&#x5E38;&#x7528;&#x7684;&#x5185;&#x5B58;&#x9875;&#x9762;&#x5199;&#x56DE;&#x78C1;&#x76D8;&#xFF0C;&#x9891;&#x7E41;&#x7684;&#x5199;&#x78C1;&#x76D8;&#x4F1A;&#x7F29;&#x77ED;&#x78C1;&#x76D8;&#x6216;&#x95EA;&#x5B58;&#x7684;&#x751F;&#x547D;&#xFF0C;iOS &#x4E3A;&#x4E86;&#x63D0;&#x5347;&#x95EA;&#x5B58;&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#xFF0C;&#x6240;&#x4EE5;&#x6CA1;&#x6709;&#x4EA4;&#x6362;&#x7A7A;&#x95F4;&#xFF0C;&#x53D6;&#x800C;&#x4EE3;&#x4E4B;&#x7684;&#x662F;&#x5185;&#x5B58;&#x538B;&#x7F29;&#x6280;&#x672F;&#xFF0C;iOS &#x5C06;&#x4E0D;&#x5E38;&#x7528;&#x5230;&#x7684; dirty &#x9875;&#x9762;&#x538B;&#x7F29;&#x4EE5;&#x51CF;&#x5C11;&#x9875;&#x9762;&#x5360;&#x7528;&#x91CF;&#xFF0C;&#x5728;&#x518D;&#x6B21;&#x8BBF;&#x95EE;&#x5230;&#x7684;&#x65F6;&#x5019;&#x91CD;&#x65B0;&#x89E3;&#x538B;&#x7F29;&#x3002;&#x8FD9;&#x4E9B;&#x90FD;&#x5728;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x5C42;&#x9762;&#x5B9E;&#x73B0;&#xFF0C;&#x5BF9;&#x8FDB;&#x7A0B;&#x65E0;&#x611F;&#x77E5;&#x3002;&#x5018;&#x82E5;&#x5728;&#x4F7F;&#x7528; NSDictionary &#x7684;&#x65F6;&#x5019;&#x6536;&#x5230;&#x5185;&#x5B58;&#x8B66;&#x544A;&#xFF0C;&#x7136;&#x540E;&#x53BB;&#x91CA;&#x653E;&#x8FD9;&#x4E2A; NSDictionary&#xFF0C;&#x5982;&#x679C;&#x5360;&#x636E;&#x7684;&#x5185;&#x5B58;&#x8FC7;&#x5927;&#xFF0C;&#x5F88;&#x53EF;&#x80FD;&#x5728;&#x5185;&#x5B58;&#x89E3;&#x538B;&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#x9020;&#x6210;&#x5185;&#x5B58;&#x538B;&#x529B;&#x66F4;&#x5927;&#x800C;&#x5BFC;&#x81F4; App &#x5C31;&#x88AB; JetSam &#x7ED9; Kill &#x6389;&#x4E86;&#xFF0C;&#x5982;&#x679C;&#x4F60;&#x7684;&#x5185;&#x5B58;&#x53EA;&#x662F;&#x7F13;&#x5B58;&#x6216;&#x8005;&#x662F;&#x53EF;&#x91CD;&#x5EFA;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x5C31;&#x628A; NSCache &#x5F53;&#x521D; NSDictionary &#x7528;&#x3002;&#x540C;&#x7406; NSPurableData &#x4E5F;&#x662F;&#x3002;</li>
+<li>UITableView/UICollectionView &#x7684;&#x91CD;&#x7528;&#x4E0D;&#x5355;&#x5355;&#x662F; cell &#x91CD;&#x7528;&#xFF0C;cell &#x4F7F;&#x7528;&#x7684;&#x5B50; view &#x4E5F;&#x8981;&#x91CD;&#x7528;&#x3002;</li>
+<li><code>[UIImage imageNamed:]</code> &#x9002;&#x5408;&#x4E8E; UI &#x754C;&#x9762;&#x4E2D;&#x7684;&#x8D34;&#x56FE;&#x7684;&#x8BFB;&#x53D6;&#xFF0C;&#x8F83;&#x5927;&#x7684;&#x8D44;&#x6E90;&#x6587;&#x4EF6;&#x5E94;&#x8BE5;&#x5C3D;&#x91CF;&#x907F;&#x514D;&#x4F7F;&#x7528;&#x3002;</li>
+<li>WKWebView &#x662F;&#x8DE8;&#x8FDB;&#x7A0B;&#x901A;&#x4FE1;&#x7684;&#xFF0C;&#x4E0D;&#x4F1A;&#x5360;&#x7528;&#x6211;&#x4EEC;&#x7684; APP &#x4F7F;&#x7528;&#x7684;&#x7269;&#x7406;&#x5185;&#x5B58;&#x91CF;&#x3002;</li>
+<li>try&#x3001;catch&#x3001;finally &#x4E00;&#x5B9A;&#x8981;&#x6E05;&#x7406;&#x8D44;&#x6E90;&#x3002;</li>
+<li>&#x5BF9;&#x5927;&#x7684;&#x5185;&#x5B58;&#x5BF9;&#x8C61;&#x8FDB;&#x884C;&#x61D2;&#x52A0;&#x8F7D;&#xFF0C;&#x4F46;&#x662F;&#x8981;&#x6CE8;&#x610F;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x3002;</li>
+</ul>
+<p>&#x5173;&#x4E8E; iOS &#x5185;&#x5B58;&#x7BA1;&#x7406;&#x66F4;&#x591A;&#x7684;&#x5185;&#x5BB9;&#xFF0C;&#x53C2;&#x89C1; <a href="https://links.jianshu.com/go?to=https%3A%2F%2Fmp.weixin.qq.com%2Fs%2FWQ7rrTJm-cn3Cb6e_zZ4cA" target="_blank">iOS Memory Deep Dive</a>&#x3002;</p>
+<h4 id="&#x5185;&#x5B58;&#x89E3;&#x51B3;&#x601D;&#x8DEF;">&#x5185;&#x5B58;&#x89E3;&#x51B3;&#x601D;&#x8DEF;</h4>
+<ul>
+<li>&#x901A;&#x8FC7; Instruments &#x6765;&#x67E5;&#x770B; leaks&#x3002;</li>
+<li>&#x96C6;&#x6210; Facebook &#x5F00;&#x6E90;&#x7684; <a href="https://links.jianshu.com/go?to=https%3A%2F%2Fgithub.com%2Ffacebook%2FFBRetainCycleDetector" target="_blank">FBRetainCycleDetector</a>&#x3002;</li>
+<li>&#x96C6;&#x6210; <a href="https://links.jianshu.com/go?to=https%3A%2F%2Fgithub.com%2FTencent%2FMLeaksFinder" target="_blank">MLeaksFinder</a>&#x3002;</li>
+</ul>
+<p>&#x66F4;&#x591A;&#x4FE1;&#x606F;&#x53C2;&#x89C1;&#xFF1A;<a href="https://links.jianshu.com/go?to=https%3A%2F%2Fjuejin.im%2Fpost%2F58ca0832a22b9d006418fe43" target="_blank">iOS App &#x7A33;&#x5B9A;&#x6027;&#x6307;&#x6807;&#x53CA;&#x76D1;&#x6D4B;</a></p>
 
                                 
                                 </section>
@@ -876,7 +1090,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"4、内存","level":"1.5","depth":1,"next":{"title":"4.1引用计数表","level":"1.5.1","depth":2,"path":"md/neicun/4.1.md","ref":"md/neicun/4.1.md","articles":[]},"previous":{"title":"3.4Method-Swizzling","level":"1.4.4","depth":2,"path":"md/runtime/3.4.md","ref":"md/runtime/3.4.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"md/neicun/4.md","mtime":"2019-04-26T04:08:03.374Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-21T11:05:20.149Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"4、内存","level":"1.5","depth":1,"next":{"title":"4.1引用计数表","level":"1.5.1","depth":2,"path":"md/neicun/4.1.md","ref":"md/neicun/4.1.md","articles":[]},"previous":{"title":"3.4Method-Swizzling","level":"1.4.4","depth":2,"path":"md/runtime/3.4.md","ref":"md/runtime/3.4.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"md/neicun/4.md","mtime":"2019-05-03T12:52:05.406Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-05-03T13:08:40.699Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
