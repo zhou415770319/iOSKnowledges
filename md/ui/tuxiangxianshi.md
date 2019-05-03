@@ -1,7 +1,7 @@
 ##1.4UI图像显示原理
 
-![](/img/ui-7.png)
-![](/img/ui-8.png)
+![](../../img/ui-7.png)
+![](../../img/ui-8.png)
 ###CPU工作
 UI布局
 文本计算
