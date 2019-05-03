@@ -1,20 +1,40 @@
 
 <!DOCTYPE HTML>
-<html lang="" >
+<html lang="zh-hans" >
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>3.3消息转发流程 · GitBook</title>
+        <title>3.3消息转发流程 · zhoufei-iosknowledges</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
-        
+        <meta name="author" content="zhoufei">
         
         
     
     <link rel="stylesheet" href="../../gitbook/style.css">
 
     
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-donate/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
             
                 
                 <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
@@ -43,10 +63,10 @@
     
         
     
-        
-    
 
         
+    
+    
     
     
     <meta name="HandheldFriendly" content="true"/>
@@ -63,6 +83,34 @@
     <link rel="prev" href="3.2.html" />
     
 
+    
+        <link rel="shortcut icon" href='../../source/images/favicon.jpg' type="image/x-icon">
+    
+    
+        <link rel="bookmark" href='../../source/images/favicon.jpg' type="image/x-icon">
+    
+    
+        <link rel="apple-touch-icon" href='../../source/images/apple-touch-icon.jpg'>
+    
+    
+        
+        <link rel="apple-touch-icon" sizes="120x120" href="../../source/images/apple-touch-icon.jpg">
+        
+        <link rel="apple-touch-icon" sizes="180x180" href="../../source/images/apple-touch-icon.jpg">
+        
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"zhou415770319","repo":"iosKnowledges","type":"star","size":"small","count":true}]};
+    </script>
+
     </head>
     <body>
         
@@ -71,7 +119,7 @@
         
             
 <div id="book-search-input" role="search">
-    <input type="text" placeholder="Type to search" />
+    <input type="text" placeholder="输入并搜索" />
 </div>
 
             
@@ -82,7 +130,16 @@
 <ul class="summary">
     
     
+    
+        
+        <li>
+            <a href="http://www.feiyum.cn/index/" target="_blank" class="custom-link">我的博客</a>
+        </li>
+    
+    
 
+    
+    <li class="divider"></li>
     
 
     
@@ -794,7 +851,7 @@
 
     <li>
         <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
-            Published with GitBook
+            本书使用 GitBook 发布
         </a>
     </li>
 </ul>
@@ -832,7 +889,7 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="&#x6D88;&#x606F;&#x8F6C;&#x53D1;&#x6D41;&#x7A0B;">&#x6D88;&#x606F;&#x8F6C;&#x53D1;&#x6D41;&#x7A0B;</h2>
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><ul><li><span class="title-icon "></span><a href="#&#x6D88;&#x606F;&#x8F6C;&#x53D1;&#x6D41;&#x7A0B;"><b></b>&#x6D88;&#x606F;&#x8F6C;&#x53D1;&#x6D41;&#x7A0B;</a></li></ul></ul></div><a href="#" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h2 id="&#x6D88;&#x606F;&#x8F6C;&#x53D1;&#x6D41;&#x7A0B;"><a name="&#x6D88;&#x606F;&#x8F6C;&#x53D1;&#x6D41;&#x7A0B;" class="anchor-navigation-ex-anchor" href="#&#x6D88;&#x606F;&#x8F6C;&#x53D1;&#x6D41;&#x7A0B;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6D88;&#x606F;&#x8F6C;&#x53D1;&#x6D41;&#x7A0B;" class="plugin-anchor" href="#&#x6D88;&#x606F;&#x8F6C;&#x53D1;&#x6D41;&#x7A0B;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6D88;&#x606F;&#x8F6C;&#x53D1;&#x6D41;&#x7A0B;</h2>
 <p>&#x5728;iOS&#x5F00;&#x53D1;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x7ECF;&#x5E38;&#x4F1A;&#x9047;&#x5230;&#x8FD9;&#x6837;&#x7684;&#x62A5;&#x9519;&#xFF1A;unrecognized selector sent to instance **&#xFF0C;&#x56E0;&#x4E3A;&#x8C03;&#x7528;&#x4E86;&#x4E00;&#x4E2A;&#x4E0D;&#x5B58;&#x5728;&#x7684;&#x65B9;&#x6CD5;&#x3002;&#x6D88;&#x606F;&#x63A5;&#x6536;&#x8005;&#x627E;&#x4E0D;&#x5230;&#x5BF9;&#x5E94;&#x7684;selector&#xFF0C;&#x5C31;&#x4F1A;&#x542F;&#x52A8;&#x6D88;&#x606F;&#x8F6C;&#x53D1;&#x673A;&#x5236;&#xFF0C;&#x5982;&#x679C;&#x8FD8;&#x662F;&#x6CA1;&#x80FD;&#x5904;&#x7406;&#x6700;&#x540E;&#x4F1A;&#x629B;&#x51FA;&#x4E0A;&#x8FF0;&#x5F02;&#x5E38;&#x3002;
  &#x5176;&#x4E2D;<a href="https://link.jianshu.com?t=http%3A%2F%2Fyulingtianxia.com%2Fblog%2F2016%2F06%2F15%2FObjective-C-Message-Sending-and-Forwarding%2F" target="_blank">Objective-C &#x6D88;&#x606F;&#x53D1;&#x9001;&#x4E0E;&#x8F6C;&#x53D1;&#x673A;&#x5236;&#x539F;&#x7406;</a>
  &#x4E2D;&#x7684;&#x6D41;&#x7A0B;&#x56FE;&#x603B;&#x7ED3;&#x7684;&#x5B8C;&#x6574;&#x6E05;&#x6670;&#xFF0C;&#x503C;&#x5F97;&#x5B66;&#x4E60;&#x3002;&#xFF08;&#x56FE;&#x7247;&#x8F6C;&#x81EA;Objective-C &#x6D88;&#x606F;&#x53D1;&#x9001;&#x4E0E;&#x8F6C;&#x53D1;&#x673A;&#x5236;&#x539F;&#x7406;<a href="https://link.jianshu.com?t=http%3A%2F%2Fyulingtianxia.com%2Fblog%2F2016%2F06%2F15%2FObjective-C-Message-Sending-and-Forwarding%2F" target="_blank">http://yulingtianxia.com/blog/2016/06/15/Objective-C-Message-Sending-and-Forwarding/</a>&#xFF09;</p>
@@ -880,7 +937,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"3.3消息转发流程","level":"1.4.3","depth":2,"next":{"title":"3.4Method-Swizzling","level":"1.4.4","depth":2,"path":"md/runtime/3.4.md","ref":"md/runtime/3.4.md","articles":[]},"previous":{"title":"3.2消息传递机制","level":"1.4.2","depth":2,"path":"md/runtime/3.2.md","ref":"md/runtime/3.2.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"md/runtime/3.3.md","mtime":"2019-05-03T13:29:56.563Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-05-03T13:08:40.699Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"3.3消息转发流程","level":"1.4.3","depth":2,"next":{"title":"3.4Method-Swizzling","level":"1.4.4","depth":2,"path":"md/runtime/3.4.md","ref":"md/runtime/3.4.md","articles":[]},"previous":{"title":"3.2消息传递机制","level":"1.4.2","depth":2,"path":"md/runtime/3.2.md","ref":"md/runtime/3.2.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","splitter","expandable-chapters-small","anchors","github","github-buttons","donate","sharing-plus","anchor-navigation-ex","favicon","livereload"],"styles":{"website":"./styles/website.css","ebook":"styles/ebook.css","pdf":"styles/pdf.css","mobi":"styles/mobi.css","epub":"styles/epub.css"},"pluginsConfig":{"github":{"url":"https://github.com/zhou415770319"},"livereload":{},"splitter":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"alipay":"../../img/alipay.JPG","alipayText":" ","button":"赞赏","title":"","wechat":"","wechatText":"微信打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"favicon":{"shortcut":"./source/images/favicon.jpg","bookmark":"./source/images/favicon.jpg","appleTouch":"./source/images/apple-touch-icon.jpg","appleTouchMore":{"120x120":"./source/images/apple-touch-icon.jpg","180x180":"./source/images/apple-touch-icon.jpg"}},"github-buttons":{"buttons":[{"user":"zhou415770319","repo":"iosKnowledges","type":"star","size":"small","count":true}]},"expandable-chapters-small":{},"sharing":{"qq":false,"all":["google","facebook","weibo","twitter","qq","qzone","linkedin","pocket"],"douban":false,"facebook":false,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","author":"zhoufei","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"zhoufei-iosknowledges","language":"zh-hans","links":{"sidebar":{"我的博客":"http://www.feiyum.cn/index/"}},"gitbook":"3.2.3","description":"ios面试知识点总结"},"file":{"path":"md/runtime/3.3.md","mtime":"2019-05-03T14:40:51.319Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-05-03T14:51:39.741Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -888,6 +945,30 @@
         
     <script src="../../gitbook/gitbook.js"></script>
     <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-donate/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
     
         
         <script src="../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
@@ -907,10 +988,6 @@
     
         
         <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
-        
-    
-        
-        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
         
     
         

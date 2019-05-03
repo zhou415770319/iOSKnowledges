@@ -1,20 +1,40 @@
 
 <!DOCTYPE HTML>
-<html lang="" >
+<html lang="zh-hans" >
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>4.5内存管理 · GitBook</title>
+        <title>4.5内存管理 · zhoufei-iosknowledges</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
-        
+        <meta name="author" content="zhoufei">
         
         
     
     <link rel="stylesheet" href="../../gitbook/style.css">
 
     
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-donate/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
             
                 
                 <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
@@ -43,10 +63,10 @@
     
         
     
-        
-    
 
         
+    
+    
     
     
     <meta name="HandheldFriendly" content="true"/>
@@ -63,6 +83,34 @@
     <link rel="prev" href="4.4.html" />
     
 
+    
+        <link rel="shortcut icon" href='../../source/images/favicon.jpg' type="image/x-icon">
+    
+    
+        <link rel="bookmark" href='../../source/images/favicon.jpg' type="image/x-icon">
+    
+    
+        <link rel="apple-touch-icon" href='../../source/images/apple-touch-icon.jpg'>
+    
+    
+        
+        <link rel="apple-touch-icon" sizes="120x120" href="../../source/images/apple-touch-icon.jpg">
+        
+        <link rel="apple-touch-icon" sizes="180x180" href="../../source/images/apple-touch-icon.jpg">
+        
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"zhou415770319","repo":"iosKnowledges","type":"star","size":"small","count":true}]};
+    </script>
+
     </head>
     <body>
         
@@ -71,7 +119,7 @@
         
             
 <div id="book-search-input" role="search">
-    <input type="text" placeholder="Type to search" />
+    <input type="text" placeholder="输入并搜索" />
 </div>
 
             
@@ -82,7 +130,16 @@
 <ul class="summary">
     
     
+    
+        
+        <li>
+            <a href="http://www.feiyum.cn/index/" target="_blank" class="custom-link">我的博客</a>
+        </li>
+    
+    
 
+    
+    <li class="divider"></li>
     
 
     
@@ -794,7 +851,7 @@
 
     <li>
         <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
-            Published with GitBook
+            本书使用 GitBook 发布
         </a>
     </li>
 </ul>
@@ -832,7 +889,7 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="&#x5185;&#x5B58;&#x7BA1;&#x7406;"><a href="https://www.jianshu.com/search?q=ios &#x5185;&#x5B58;&#x7BA1;&#x7406;&amp;page=1&amp;type=note" target="_blank">&#x5185;&#x5B58;&#x7BA1;&#x7406;</a></h2>
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><ul><li><span class="title-icon "></span><a href="#&#x5185;&#x5B58;&#x7BA1;&#x7406;"><b></b>&#x5185;&#x5B58;&#x7BA1;&#x7406;</a></li></ul></ul></div><a href="#" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h2 id="&#x5185;&#x5B58;&#x7BA1;&#x7406;"><a name="&#x5185;&#x5B58;&#x7BA1;&#x7406;" class="anchor-navigation-ex-anchor" href="#&#x5185;&#x5B58;&#x7BA1;&#x7406;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5185;&#x5B58;&#x7BA1;&#x7406;" class="plugin-anchor" href="#&#x5185;&#x5B58;&#x7BA1;&#x7406;"><i class="fa fa-link" aria-hidden="true"></i></a><a href="https://www.jianshu.com/search?q=ios &#x5185;&#x5B58;&#x7BA1;&#x7406;&amp;page=1&amp;type=note" target="_blank">&#x5185;&#x5B58;&#x7BA1;&#x7406;</a></h2>
 <p>iOS&#x5185;&#x5B58;&#x7BA1;&#x7406;&#x673A;&#x5236;&#x7684;&#x539F;&#x7406;&#x662F;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#xFF0C;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x7B80;&#x5355;&#x6765;&#x8BF4;&#x5C31;&#x662F;&#x7EDF;&#x8BA1;&#x4E00;&#x5757;&#x5185;&#x5B58;&#x7684;&#x6240;&#x6709;&#x6743;&#xFF0C;&#x5F53;&#x8FD9;&#x5757;&#x5185;&#x5B58;&#x88AB;&#x521B;&#x5EFA;&#x51FA;&#x6765;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5B83;&#x7684;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x4ECE;0&#x589E;&#x52A0;&#x5230;1&#xFF0C;&#x8868;&#x793A;&#x6709;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x6216;&#x6307;&#x9488;&#x6301;&#x6709;&#x8FD9;&#x5757;&#x5185;&#x5B58;&#xFF0C;&#x62E5;&#x6709;&#x8FD9;&#x5757;&#x5185;&#x5B58;&#x7684;&#x6240;&#x6709;&#x6743;&#xFF0C;&#x5982;&#x679C;&#x8FD9;&#x65F6;&#x5019;&#x6709;&#x53E6;&#x5916;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x6216;&#x6307;&#x9488;&#x6307;&#x5411;&#x8FD9;&#x5757;&#x5185;&#x5B58;&#xFF0C;&#x90A3;&#x4E48;&#x4E3A;&#x4E86;&#x8868;&#x793A;&#x8FD9;&#x4E2A;&#x540E;&#x6765;&#x7684;&#x5BF9;&#x8C61;&#x6216;&#x6307;&#x9488;&#x5BF9;&#x8FD9;&#x5757;&#x5185;&#x5B58;&#x7684;&#x6240;&#x6709;&#x6743;&#xFF0C;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x52A0;1&#x53D8;&#x4E3A;2&#xFF0C;&#x4E4B;&#x540E;&#x82E5;&#x6709;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x6216;&#x6307;&#x9488;&#x4E0D;&#x518D;&#x6307;&#x5411;&#x8FD9;&#x5757;&#x5185;&#x5B58;&#x65F6;&#xFF0C;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x51CF;1&#xFF0C;&#x8868;&#x793A;&#x8FD9;&#x4E2A;&#x5BF9;&#x8C61;&#x6216;&#x6307;&#x9488;&#x4E0D;&#x518D;&#x62E5;&#x6709;&#x8FD9;&#x5757;&#x5185;&#x5B58;&#x7684;&#x6240;&#x6709;&#x6743;&#xFF0C;&#x5F53;&#x4E00;&#x5757;&#x5185;&#x5B58;&#x7684;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x53D8;&#x4E3A;0&#xFF0C;&#x8868;&#x793A;&#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x5BF9;&#x8C61;&#x6216;&#x6307;&#x9488;&#x6301;&#x6709;&#x8FD9;&#x5757;&#x5185;&#x5B58;&#xFF0C;&#x7CFB;&#x7EDF;&#x4FBF;&#x4F1A;&#x7ACB;&#x523B;&#x91CA;&#x653E;&#x6389;&#x8FD9;&#x5757;&#x5185;&#x5B58;&#x3002;</p>
 <p>&#x5176;&#x4E2D;&#x5728;&#x5F00;&#x53D1;&#x65F6;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x53C8;&#x5206;&#x4E3A;ARC&#xFF08;&#x81EA;&#x52A8;&#x5185;&#x5B58;&#x7BA1;&#x7406;&#xFF09;&#x548C;MRC&#xFF08;&#x624B;&#x52A8;&#x5185;&#x5B58;&#x7BA1;&#x7406;&#xFF09;&#x3002;ARC&#x7684;&#x672C;&#x8D28;&#x5176;&#x5B9E;&#x5C31;&#x662F;MRC&#xFF0C;&#x53EA;&#x4E0D;&#x8FC7;&#x662F;&#x7CFB;&#x7EDF;&#x5E2E;&#x52A9;&#x5F00;&#x53D1;&#x8005;&#x7BA1;&#x7406;&#x5DF2;&#x521B;&#x5EFA;&#x7684;&#x5BF9;&#x8C61;&#x6216;&#x5185;&#x5B58;&#x7A7A;&#x95F4;&#xFF0C;&#x81EA;&#x52A8;&#x5728;&#x7CFB;&#x7EDF;&#x8BA4;&#x4E3A;&#x5408;&#x9002;&#x7684;&#x65F6;&#x95F4;&#x548C;&#x5730;&#x70B9;&#x91CA;&#x653E;&#x6389;&#x5DF2;&#x7ECF;&#x5931;&#x53BB;&#x4F5C;&#x7528;&#x7684;&#x5185;&#x5B58;&#x7A7A;&#x95F4;&#xFF0C;&#x539F;&#x7406;&#x662F;&#x4E00;&#x6837;&#x7684;&#x3002;&#x867D;&#x7136;ARC&#x64CD;&#x4F5C;&#x8D77;&#x6765;&#x5F88;&#x65B9;&#x4FBF;&#xFF0C;&#x4E0D;&#x4F46;&#x51CF;&#x5C11;&#x4E86;&#x4EE3;&#x7801;&#x91CF;&#xFF0C;&#x800C;&#x4E14;&#x964D;&#x4F4E;&#x4E86;&#x5185;&#x5B58;&#x51FA;&#x9519;&#x7684;&#x6982;&#x7387;&#xFF0C;&#x4F46;&#x56E0;&#x4E3A;ARC&#x4E0D;&#x4E00;&#x5B9A;&#x4F1A;&#x53CA;&#x65F6;&#x91CA;&#x653E;&#xFF0C;&#x6240;&#x4EE5;&#x7A0B;&#x5E8F;&#x6709;&#x65F6;&#x5019;&#x53EF;&#x80FD;&#x4F1A;&#x5360;&#x7528;&#x5185;&#x5B58;&#x8F83;&#x5927;&#x3002;&#x800C;MRC&#x82E5;&#x505A;&#x5F97;&#x597D;&#xFF0C;&#x901A;&#x8FC7;&#x624B;&#x52A8;&#x7BA1;&#x7406;&#xFF0C;&#x53CA;&#x65F6;&#x91CA;&#x653E;&#x6389;&#x4E0D;&#x9700;&#x8981;&#x7684;&#x5185;&#x5B58;&#x7A7A;&#x95F4;&#xFF0C;&#x4FBF;&#x53EF;&#x4FDD;&#x8BC1;&#x7A0B;&#x5E8F;&#x957F;&#x65F6;&#x95F4;&#x8FD0;&#x884C;&#x5728;&#x826F;&#x597D;&#x72B6;&#x6001;&#x4E0A;&#x3002;</p>
 <p>&#x5728;MRC&#x4E2D;&#x4F1A;&#x5F15;&#x8D77;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x53D8;&#x5316;&#x7684;&#x5173;&#x952E;&#x5B57;&#x6709;&#xFF1A;alloc&#xFF0C;retain&#xFF0C;copy&#xFF0C;release&#xFF0C;autorelease&#x3002;&#xFF08;strong&#x5173;&#x952E;&#x5B57;&#x53EA;&#x7528;&#x4E8E;ARC&#xFF0C;&#x4F5C;&#x7528;&#x7B49;&#x540C;&#x4E8E;retain&#xFF09;</p>
@@ -896,7 +953,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"4.5内存管理","level":"1.5.5","depth":2,"next":{"title":"5、Block","level":"1.6","depth":1,"path":"md/block/5.md","ref":"md/block/5.md","articles":[{"title":"5.1Block本质","level":"1.6.1","depth":2,"path":"md/block/5.1.md","ref":"md/block/5.1.md","articles":[]},{"title":"5.2截获变量特性","level":"1.6.2","depth":2,"path":"md/block/5.2.md","ref":"md/block/5.2.md","articles":[]},{"title":"5.3内存管理","level":"1.6.3","depth":2,"path":"md/block/5.3.md","ref":"md/block/5.3.md","articles":[]},{"title":"5.4循环引用","level":"1.6.4","depth":2,"path":"md/block/5.4.md","ref":"md/block/5.4.md","articles":[]}]},"previous":{"title":"4.4循环引用","level":"1.5.4","depth":2,"path":"md/neicun/4.4.md","ref":"md/neicun/4.4.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"md/neicun/4.5.md","mtime":"2019-05-03T13:11:16.891Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-05-03T13:08:40.699Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"4.5内存管理","level":"1.5.5","depth":2,"next":{"title":"5、Block","level":"1.6","depth":1,"path":"md/block/5.md","ref":"md/block/5.md","articles":[{"title":"5.1Block本质","level":"1.6.1","depth":2,"path":"md/block/5.1.md","ref":"md/block/5.1.md","articles":[]},{"title":"5.2截获变量特性","level":"1.6.2","depth":2,"path":"md/block/5.2.md","ref":"md/block/5.2.md","articles":[]},{"title":"5.3内存管理","level":"1.6.3","depth":2,"path":"md/block/5.3.md","ref":"md/block/5.3.md","articles":[]},{"title":"5.4循环引用","level":"1.6.4","depth":2,"path":"md/block/5.4.md","ref":"md/block/5.4.md","articles":[]}]},"previous":{"title":"4.4循环引用","level":"1.5.4","depth":2,"path":"md/neicun/4.4.md","ref":"md/neicun/4.4.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","splitter","expandable-chapters-small","anchors","github","github-buttons","donate","sharing-plus","anchor-navigation-ex","favicon","livereload"],"styles":{"website":"./styles/website.css","ebook":"styles/ebook.css","pdf":"styles/pdf.css","mobi":"styles/mobi.css","epub":"styles/epub.css"},"pluginsConfig":{"github":{"url":"https://github.com/zhou415770319"},"livereload":{},"splitter":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"alipay":"../../img/alipay.JPG","alipayText":" ","button":"赞赏","title":"","wechat":"","wechatText":"微信打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"favicon":{"shortcut":"./source/images/favicon.jpg","bookmark":"./source/images/favicon.jpg","appleTouch":"./source/images/apple-touch-icon.jpg","appleTouchMore":{"120x120":"./source/images/apple-touch-icon.jpg","180x180":"./source/images/apple-touch-icon.jpg"}},"github-buttons":{"buttons":[{"user":"zhou415770319","repo":"iosKnowledges","type":"star","size":"small","count":true}]},"expandable-chapters-small":{},"sharing":{"qq":false,"all":["google","facebook","weibo","twitter","qq","qzone","linkedin","pocket"],"douban":false,"facebook":false,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","author":"zhoufei","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"zhoufei-iosknowledges","language":"zh-hans","links":{"sidebar":{"我的博客":"http://www.feiyum.cn/index/"}},"gitbook":"3.2.3","description":"ios面试知识点总结"},"file":{"path":"md/neicun/4.5.md","mtime":"2019-05-03T14:40:51.311Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-05-03T14:51:39.741Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -904,6 +961,30 @@
         
     <script src="../../gitbook/gitbook.js"></script>
     <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-donate/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
     
         
         <script src="../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
@@ -923,10 +1004,6 @@
     
         
         <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
-        
-    
-        
-        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
         
     
         
