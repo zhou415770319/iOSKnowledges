@@ -832,7 +832,111 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <p>5.md</p>
+                                <h2 id="block">Block</h2>
+<h4 id="block&#x5B9E;&#x73B0;&#x539F;&#x7406;">Block&#x5B9E;&#x73B0;&#x539F;&#x7406;</h4>
+<p>&#x8981;&#x60F3;&#x77E5;&#x9053;Block&#x7684;&#x5185;&#x90E8;&#x5B9E;&#x73B0;&#xFF0C;&#x9700;&#x8981;&#x77E5;&#x9053;Block&#x7F16;&#x8BD1;&#x5B8C;&#x540E;&#x662F;&#x4EC0;&#x4E48;&#x6837;&#x5B50;&#xFF0C;&#x4F7F;&#x7528;clang&#x53EF;&#x770B;&#x5230;Block&#x7F16;&#x8BD1;&#x5B8C;&#x540E;&#x7684;&#x4EE3;&#x7801;&#x5B9E;&#x73B0;&#x3002;</p>
+<p>Block&#x7684;&#x8BED;&#x6CD5;&#x770B;&#x7740;&#x7279;&#x522B;&#xFF0C;&#x4F46;&#x5B83;&#x5B9E;&#x9645;&#x4E0A;&#x662F;&#x4F5C;&#x4E3A;&#x6781;&#x666E;&#x901A;&#x7684;C&#x8BED;&#x8A00;&#x6E90;&#x4EE3;&#x7801;&#x6765;&#x5904;&#x7406;&#x7684;&#x3002;&#x901A;&#x8FC7;&#x652F;&#x6301;Block&#x7684;&#x7F16;&#x8BD1;&#x5668;&#xFF0C;&#x5C06;&#x542B;&#x6709;Block&#x8BED;&#x6CD5;&#x7684;&#x6E90;&#x4EE3;&#x7801;&#x8F6C;&#x6362;&#x4E3A;C&#x8BED;&#x8A00;&#x7684;&#x6E90;&#x4EE3;&#x7801;&#xFF0C;&#x5E76;&#x4F5C;&#x4E3A;&#x6781;&#x4E3A;&#x666E;&#x901A;&#x7684;C&#x8BED;&#x8A00;&#x6E90;&#x4EE3;&#x7801;&#x88AB;&#x7F16;&#x8BD1;&#x3002;</p>
+<pre><code>clang -rewrite-objc &#x6587;&#x4EF6;&#x540D;
+</code></pre><p>&#x4E0A;&#x8FF0;&#x547D;&#x4EE4;&#x4F7F;&#x7528;&#x5728;&#x547D;&#x4EE4;&#x884C;&#x9879;&#x76EE;&#x662F;&#x6CA1;&#x95EE;&#x9898;&#x7684;&#xFF0C;&#x4F46;&#x662F;&#x4F7F;&#x7528;&#x5728;single APP&#x9879;&#x76EE;&#x4E2D;&#x4F1A;&#x62A5;&#x9519;&#xFF0C;<em>UIKit/UIKit.h&#x2019; file not found</em></p>
+<p>&#x5728;single APP&#x9879;&#x76EE;&#x4E2D;&#x4F7F;&#x7528;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#xFF1A;</p>
+<pre><code>&#x6A21;&#x62DF;&#x5668; xcrun -sdk iphonesimulator clang -rewrite-objc xxx.m
+&#x771F;&#x673A; xcrun -sdk iphoneos clang -rewrite-objc xxx.m
+</code></pre><p>&#x4F7F;&#x7528;&#x547D;&#x4EE4;&#x540E;&#x4F1A;&#x751F;&#x6210;&#x4E00;&#x4E2A; <strong>xxx.cpp</strong>&#x7684;&#x6587;&#x4EF6;&#x3002;</p>
+<p>&#x6765;&#x5177;&#x4F53;&#x770B;&#x4E0B;Block&#x7F16;&#x8BD1;&#x540E;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x5148;&#x6765;&#x770B;&#x547D;&#x4EE4;&#x884C;&#x9879;&#x76EE;&#xFF1A;</p>
+<pre><code>int main(int argc, const char * argv[]) {
+    @autoreleasepool {
+        void (^blk)(void) = ^{
+            printf(&quot;Block\n&quot;);
+        };
+        blk();
+    }
+    return 0;
+}
+</code></pre><p>&#x4E0A;&#x8FF0;&#x4EE3;&#x7801;&#x662F;&#x4E00;&#x4E2A;&#x5F88;&#x7B80;&#x5355;&#x7684;&#x65E0;&#x8FD4;&#x56DE;&#x503C;&#x65E0;&#x53C2;&#x6570;&#x7684;Block&#xFF0C;&#x4E0B;&#x9762;&#x662F;&#x4F7F;&#x7528;clang&#x7F16;&#x8BD1;&#x540E;&#x7684;&#x6E90;&#x4EE3;&#x7801;&#xFF0C;&#x53EA;&#x628A;&#x6709;&#x7528;&#x7684;&#x90E8;&#x5206;&#x8D34;&#x51FA;&#xFF1A;</p>
+<pre><code>struct __block_impl {
+  void *isa;//block isa&#x6307;&#x9488;
+  int Flags;
+  int Reserved;
+  void *FuncPtr;//&#x51FD;&#x6570;&#x6307;&#x9488;
+};
+
+struct __main_block_impl_0 {
+  struct __block_impl impl;
+  struct __main_block_desc_0* Desc;
+  //&#x521D;&#x59CB;&#x5316;
+  __main_block_impl_0(void *fp, struct __main_block_desc_0 *desc, int flags=0) {
+    impl.isa = &amp;_NSConcreteStackBlock;
+    impl.Flags = flags;
+    impl.FuncPtr = fp;
+    Desc = desc;
+  }
+};
+
+static void __main_block_func_0(struct __main_block_impl_0 *__cself) {
+
+            printf(&quot;Block\n&quot;);
+        }
+
+static struct __main_block_desc_0 {
+  size_t reserved;
+  size_t Block_size;//block&#x5927;&#x5C0F;
+} __main_block_desc_0_DATA = { 0, sizeof(struct __main_block_impl_0)};
+
+int main(int argc, const char * argv[]) {
+    /* @autoreleasepool */ { __AtAutoreleasePool __autoreleasepool; 
+        void (*blk)(void) = ((void (*)())&amp;__main_block_impl_0((void *)__main_block_func_0, &amp;__main_block_desc_0_DATA));//block&#x8868;&#x8FBE;&#x5F0F;&#x8F6C;&#x6362;
+        ((void (*)(__block_impl *))((__block_impl *)blk)-&gt;FuncPtr)((__block_impl *)blk);//block&#x8C03;&#x7528;
+    }
+    return 0;
+}
+</code></pre><p>&#x5982;&#x4E0A;&#x53D8;&#x6362;&#x540E;&#x7684;&#x6E90;&#x4EE3;&#x7801;&#xFF0C;&#x901A;&#x8FC7;Block&#x4F7F;&#x7528;&#x7684;&#x533F;&#x540D;&#x51FD;&#x6570;&#x5B9E;&#x9645;&#x4E0A;&#x88AB;&#x4F5C;&#x4E3A;&#x7B80;&#x5355;&#x7684;C&#x8BED;&#x8A00;&#x51FD;&#x6570;&#x6765;&#x5904;&#x7406;&#xFF0C;&#x53E6;&#x5916;Block&#x8BED;&#x6CD5;&#x6240;&#x5C5E;&#x7684;&#x51FD;&#x6570;&#x540D;&#xFF08;&#x6B64;&#x5904;&#x4E3A;main&#xFF0C;&#x540E;&#x8FB9;&#x4F1A;&#x8D34;&#x4E0A; &#x51FD;&#x6570;&#x540D;&#x4E3A; viewDidLoad&#xFF09;&#x548C;&#x8BE5;Block&#x8BED;&#x6CD5;&#x5728;&#x8BE5;&#x51FD;&#x6570;&#x51FA;&#x73B0;&#x7684;&#x987A;&#x5E8F;&#x503C;&#x6765;&#x7ED9;&#x7ECF;clang&#x53D8;&#x6362;&#x7684;&#x51FD;&#x6570;&#x547D;&#x540D;&#x3002;</p>
+<p>&#x4E0B;&#x9762;&#x5177;&#x4F53;&#x4E00;&#x6B65;&#x4E00;&#x6B65;&#x6765;&#x770B;&#x770B;&#x4E0A;&#x8FF0;&#x4EE3;&#x7801;&#xFF1A;
+ __main_block_impl_0&#x7ED3;&#x6784;&#x4F53;&#x7684;&#x58F0;&#x660E;&#xFF1A;&#x7B2C;&#x4E00;&#x4E2A;&#x6210;&#x5458;&#x53D8;&#x91CF;&#x662F;impl,&#x7B2C;&#x4E8C;&#x4E2A;&#x6210;&#x5458;&#x53D8;&#x91CF;&#x662F;Desc&#x3002;</p>
+<pre><code>struct __main_block_impl_0 {
+  struct __block_impl impl;
+  struct __main_block_desc_0* Desc;
+};
+</code></pre><p>__block_impl &#x7ED3;&#x6784;&#x4F53;&#x7684;&#x58F0;&#x660E;&#xFF1A;</p>
+<pre><code>struct __block_impl {
+  void *isa;//block isa&#x6307;&#x9488;
+  int Flags;
+  int Reserved;
+  void *FuncPtr;//&#x51FD;&#x6570;&#x6307;&#x9488;
+};
+</code></pre><p>__main_block_desc_0 &#x7ED3;&#x6784;&#x4F53;&#x58F0;&#x660E;&#xFF1A;</p>
+<pre><code>static struct __main_block_desc_0 {
+  size_t reserved;
+  size_t Block_size;//block&#x5927;&#x5C0F;
+}
+</code></pre><p>__main_block_impl_0&#x5B9E;&#x4F8B;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#xFF1A;</p>
+<pre><code>__main_block_impl_0(void *fp, struct __main_block_desc_0 *desc, int flags=0) {
+    impl.isa = &amp;_NSConcreteStackBlock;
+    impl.Flags = flags;
+    impl.FuncPtr = fp;
+    Desc = desc;
+  }
+</code></pre><p>Block&#x8868;&#x8FBE;&#x5F0F;&#x751F;&#x6210;&#x90E8;&#x5206;&#xFF1A;&#x521D;&#x59CB;&#x5316;&#x4E00;&#x4E2A;__main_block_impl_0&#x7ED3;&#x6784;&#x4F53;&#x5B9E;&#x4F8B;&#x5E76;&#x8D4B;&#x503C;&#x7ED9;blk&#x53D8;&#x91CF;&#x3002;</p>
+<pre><code>void (*blk)(void) = ((void (*)())&amp;__main_block_impl_0((void *)__main_block_func_0, &amp;__main_block_desc_0_DATA));
+</code></pre><p><strong>main_block_func_0&#x7ED3;&#x6784;&#x4F53;&#x58F0;&#x660E;&#xFF0C;</strong>main_block_func_0&#x8BE5;&#x51FD;&#x6570;&#x7684;&#x53C2;&#x6570;<strong>cself&#x662F; </strong>main_block_impl_0 &#x7ED3;&#x6784;&#x4F53;&#x5B9E;&#x4F8B;&#xFF0C;&#x8BE5;&#x5B9E;&#x4F8B;&#x5176;&#x5B9E;&#x5C31;&#x662F;&#x8F6C;&#x6362;&#x524D;&#x7684;Block&#x5B9E;&#x4F8B;&#x3002;</p>
+<pre><code>static void __main_block_func_0(struct __main_block_impl_0 *__cself) {
+
+            printf(&quot;Block\n&quot;);
+        }
+</code></pre><p>&#x53BB;&#x6389;&#x8F6C;&#x6362;&#x90E8;&#x5206;&#xFF1A;</p>
+<pre><code>struct __main_block_impl_0 temp = __main_block_impl_0(__main_block_func_0,&amp;__main_block_desc_0_DATA);
+struct __main_block_impl_0 *blk = &amp;temp;
+</code></pre><p>&#x4E0A;&#x8FB9;&#x4EE3;&#x7801;&#x5BF9;&#x5E94;&#x7684;&#x6E90;&#x4EE3;&#x7801;&#x5C31;&#x662F;&#x4EE5;&#x4E0B;&#x4EE3;&#x7801;&#xFF1A;</p>
+<pre><code>void (^blk)(void) = ^{
+            printf(&quot;Block\n&quot;);
+        };
+</code></pre><p>&#x518D;&#x6765;&#x770B;&#x770B;Block&#x8C03;&#x7528;&#x90E8;&#x5206;&#xFF1A;blk()</p>
+<pre><code>((void (*)(__block_impl *))((__block_impl *)blk)-&gt;FuncPtr)((__block_impl *)blk);
+</code></pre><p>&#x53BB;&#x6389;&#x8F6C;&#x6362;&#x90E8;&#x5206;&#xFF1A;</p>
+<pre><code>(*blk-&gt;impl.FuncPtr)(blk);
+</code></pre><blockquote>
+<p>&#x6B63;&#x5982;&#x521A;&#x624D;&#x770B;&#x5230;&#x7684;&#x7F16;&#x8BD1;&#x540E;&#x7684;&#x4EE3;&#x7801;&#xFF0C;block&#x8BED;&#x6CD5;&#x8F6C;&#x6362;&#x7684;<strong>main_block_func_0&#x51FD;&#x6570;&#x7684;&#x6307;&#x9488;&#x88AB;&#x8D4B;&#x503C;&#x6210;&#x5458;&#x53D8;&#x91CF;FuncPtr&#x4E2D;&#xFF0C;&#x53E6;&#x5916;&#x4E5F;&#x8BF4;&#x660E;&#x4E86;</strong>main_block_func_0&#x51FD;&#x6570;&#x7684;&#x53C2;&#x6570;__cself&#x6307;&#x5411;Block&#x503C;&#x3002;&#x5728;&#x8C03;&#x7528;&#x8BE5;&#x4EE3;&#x7801;&#x7684;&#x6E90;&#x4EE3;&#x7801;&#x4E2D;&#x53EF;&#x4EE5;&#x770B;&#x51FA;Block&#x6B63;&#x662F;&#x4F5C;&#x4E3A;&#x53C2;&#x6570;&#x8FDB;&#x884C;&#x4E86;&#x4F20;&#x9012;&#x3002;</p>
+</blockquote>
+<h5 id="block&#x5B9E;&#x8D28;&#x5C31;&#x662F;&#xFF1A;-&#x7F16;&#x8BD1;&#x7684;&#x65F6;&#x5019;&#x7F16;&#x8BD1;&#x5668;&#x4F1A;&#x628A;block&#x7684;&#x8868;&#x8FBE;&#x5F0F;&#x53CA;block&#x53D8;&#x91CF;&#xFF0C;&#x7F16;&#x8BD1;&#x6210;&#x4E00;&#x822C;&#x7684;c&#x8BED;&#x8A00;&#x7ED3;&#x6784;&#x4F53;&#x3001;&#x51FD;&#x6570;&#xFF0C;block&#x8C03;&#x7528;&#x5C31;&#x662F;&#x51FD;&#x6570;&#x6307;&#x9488;&#x8C03;&#x7528;&#x3002;block&#x8868;&#x8FBE;&#x5F0F;&#x4E2D;&#x4F7F;&#x7528;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x65F6;&#xFF0C;&#x7F16;&#x8BD1;&#x751F;&#x6210;&#x7684;&#x7ED3;&#x6784;&#x4F53;&#xFF08;mainblockimpl0&#xFF09;&#x4F1A;&#x6301;&#x6709;&#x8BE5;&#x53D8;&#x91CF;&#xFF0C;&#x8BE5;&#x7ED3;&#x6784;&#x4F53;&#x4F1A;&#x5E26;&#x7740;&#x9ED8;&#x8BA4;&#x503C;&#x521D;&#x59CB;&#x5316;&#x7ED3;&#x6784;&#x4F53;&#x5B9E;&#x4F8B;&#x3002;">Block&#x5B9E;&#x8D28;&#x5C31;&#x662F;&#xFF1A; &#x7F16;&#x8BD1;&#x7684;&#x65F6;&#x5019;&#x7F16;&#x8BD1;&#x5668;&#x4F1A;&#x628A;Block&#x7684;&#x8868;&#x8FBE;&#x5F0F;&#x53CA;Block&#x53D8;&#x91CF;&#xFF0C;&#x7F16;&#x8BD1;&#x6210;&#x4E00;&#x822C;&#x7684;C&#x8BED;&#x8A00;&#x7ED3;&#x6784;&#x4F53;&#x3001;&#x51FD;&#x6570;&#xFF0C;block&#x8C03;&#x7528;&#x5C31;&#x662F;&#x51FD;&#x6570;&#x6307;&#x9488;&#x8C03;&#x7528;&#x3002;Block&#x8868;&#x8FBE;&#x5F0F;&#x4E2D;&#x4F7F;&#x7528;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x65F6;&#xFF0C;&#x7F16;&#x8BD1;&#x751F;&#x6210;&#x7684;&#x7ED3;&#x6784;&#x4F53;&#xFF08;__main_block_impl_0&#xFF09;&#x4F1A;&#x6301;&#x6709;&#x8BE5;&#x53D8;&#x91CF;&#xFF0C;&#x8BE5;&#x7ED3;&#x6784;&#x4F53;&#x4F1A;&#x5E26;&#x7740;&#x9ED8;&#x8BA4;&#x503C;&#x521D;&#x59CB;&#x5316;&#x7ED3;&#x6784;&#x4F53;&#x5B9E;&#x4F8B;&#x3002;</h5>
 
                                 
                                 </section>
@@ -876,7 +980,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"5、Block","level":"1.6","depth":1,"next":{"title":"5.1Block本质","level":"1.6.1","depth":2,"path":"md/block/5.1.md","ref":"md/block/5.1.md","articles":[]},"previous":{"title":"4.5内存管理","level":"1.5.5","depth":2,"path":"md/neicun/4.5.md","ref":"md/neicun/4.5.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"md/block/5.md","mtime":"2019-04-26T04:08:03.368Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-21T11:05:20.149Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"5、Block","level":"1.6","depth":1,"next":{"title":"5.1Block本质","level":"1.6.1","depth":2,"path":"md/block/5.1.md","ref":"md/block/5.1.md","articles":[]},"previous":{"title":"4.5内存管理","level":"1.5.5","depth":2,"path":"md/neicun/4.5.md","ref":"md/neicun/4.5.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"md/block/5.md","mtime":"2019-05-03T13:14:58.965Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-05-03T13:08:40.699Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

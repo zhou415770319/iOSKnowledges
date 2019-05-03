@@ -832,8 +832,76 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <p>5.1.md</p>
+                                <h2 id="block&#x672C;&#x8D28;">Block&#x672C;&#x8D28;</h2>
+<h4 id="block&#x4E5F;&#x662F;oc&#x5BF9;&#x8C61;">Block&#x4E5F;&#x662F;OC&#x5BF9;&#x8C61;</h4>
+<pre><code>impl.isa = &amp;_NSConcreteStackBlock;
+</code></pre><p><strong>&#x53EA;&#x8981;&#x4F60;&#x7406;&#x89E3;OC&#x5BF9;&#x8C61;&#x5185;&#x7684;isa&#x6307;&#x9488;&#xFF0C;&#x4F60;&#x5C31;&#x80FD;&#x7406;&#x89E3;&#x8FD9;&#x91CC;&#x7684;isa&#x6307;&#x9488;&#x3002;block&#x7684;isa&#x6307;&#x9488;&#x6307;&#x5411;&#x81EA;&#x5DF1;&#x6240;&#x5C5E;&#x7684;Block&#x7C7B;&#x3002;</strong>
+ OC&#x5BF9;&#x8C61;&#x90FD;&#x6709;&#x4E00;&#x4E2A;isa&#x6307;&#x9488;&#xFF0C;&#x6307;&#x5411;&#x5C5E;&#x4E8E;&#x5F53;&#x524D;&#x7684;&#x7C7B;&#x3002;&#x4EE5;&#x4E0B;&#x662F;<objc runtime.h="">&#x8FD0;&#x884C;&#x65F6; objc_class &#x7ED3;&#x6784;&#x4F53;&#x7684;&#x58F0;&#x660E;&#x3002;</objc></p>
+<pre><code>struct objc_class {
+    Class _Nonnull isa  OBJC_ISA_AVAILABILITY;
 
+#if !__OBJC2__
+    Class _Nullable super_class                              OBJC2_UNAVAILABLE;
+    const char * _Nonnull name                               OBJC2_UNAVAILABLE;
+    long version                                             OBJC2_UNAVAILABLE;
+    long info                                                OBJC2_UNAVAILABLE;
+    long instance_size                                       OBJC2_UNAVAILABLE;
+    struct objc_ivar_list * _Nullable ivars                  OBJC2_UNAVAILABLE;
+    struct objc_method_list * _Nullable * _Nullable methodLists                    OBJC2_UNAVAILABLE;
+    struct objc_cache * _Nonnull cache                       OBJC2_UNAVAILABLE;
+    struct objc_protocol_list * _Nullable protocols          OBJC2_UNAVAILABLE;
+#endif
+}
+</code></pre><p>&#x4EE5;&#x4E0B;&#x8D34;&#x51FA;single APP &#x4F7F;&#x7528;&#x547D;&#x4EE4;&#x7F16;&#x8BD1;&#x540E;&#x7684;&#x6E90;&#x4EE3;&#x7801;&#x5B9E;&#x73B0;&#xFF0C;&#x4F7F;&#x7528;&#x547D;&#x4EE4;&#xFF1A;</p>
+<pre><code>xcrun -sdk iphonesimulator clang -rewrite-objc ViewController.m
+&#x6E90;&#x4EE3;&#x7801;&#xFF1A;
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    int (^block)(int,int) = ^ int (int a,int b) {
+        return a + b;
+    };
+    int sum = block(1,2);
+    NSLog(@&quot;%d&quot;,sum);
+}
+&#x7F16;&#x8BD1;&#x540E;&#xFF1A;
+struct __block_impl {
+  void *isa;
+  int Flags;
+  int Reserved;
+  void *FuncPtr;
+};
+
+static struct __ViewController__viewDidLoad_block_desc_0 {
+  size_t reserved;
+  size_t Block_size;
+} __ViewController__viewDidLoad_block_desc_0_DATA = { 0, sizeof(struct __ViewController__viewDidLoad_block_impl_0)};
+
+
+static int __ViewController__viewDidLoad_block_func_0(struct __ViewController__viewDidLoad_block_impl_0 *__cself, int a, int b) {
+
+        return a + b;
+    }
+
+struct __ViewController__viewDidLoad_block_impl_0 {
+  struct __block_impl impl;
+  struct __ViewController__viewDidLoad_block_desc_0* Desc;
+  __ViewController__viewDidLoad_block_impl_0(void *fp, struct __ViewController__viewDidLoad_block_desc_0 *desc, int flags=0) {
+    impl.isa = &amp;_NSConcreteStackBlock;
+    impl.Flags = flags;
+    impl.FuncPtr = fp;
+    Desc = desc;
+  }
+};
+
+static void _I_ViewController_viewDidLoad(ViewController * self, SEL _cmd) {
+    ((void (*)(__rw_objc_super *, SEL))(void *)objc_msgSendSuper)((__rw_objc_super){(id)self, (id)class_getSuperclass(objc_getClass(&quot;ViewController&quot;))}, sel_registerName(&quot;viewDidLoad&quot;));
+
+    int (*block)(int,int) = ((int (*)(int, int))&amp;__ViewController__viewDidLoad_block_impl_0((void *)__ViewController__viewDidLoad_block_func_0, &amp;__ViewController__viewDidLoad_block_desc_0_DATA));
+    int sum = ((int (*)(__block_impl *, int, int))((__block_impl *)block)-&gt;FuncPtr)((__block_impl *)block, 1, 2);
+    NSLog((NSString *)&amp;__NSConstantStringImpl__var_folders_9k_z85dfkt91zd1j387gcxn8xkh0000gn_T_ViewController_b0d5a8_mi_0,sum);
+}
+</code></pre>
                                 
                                 </section>
                             
@@ -876,7 +944,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"5.1Block本质","level":"1.6.1","depth":2,"next":{"title":"5.2截获变量特性","level":"1.6.2","depth":2,"path":"md/block/5.2.md","ref":"md/block/5.2.md","articles":[]},"previous":{"title":"5、Block","level":"1.6","depth":1,"path":"md/block/5.md","ref":"md/block/5.md","articles":[{"title":"5.1Block本质","level":"1.6.1","depth":2,"path":"md/block/5.1.md","ref":"md/block/5.1.md","articles":[]},{"title":"5.2截获变量特性","level":"1.6.2","depth":2,"path":"md/block/5.2.md","ref":"md/block/5.2.md","articles":[]},{"title":"5.3内存管理","level":"1.6.3","depth":2,"path":"md/block/5.3.md","ref":"md/block/5.3.md","articles":[]},{"title":"5.4循环引用","level":"1.6.4","depth":2,"path":"md/block/5.4.md","ref":"md/block/5.4.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"md/block/5.1.md","mtime":"2019-04-26T04:08:03.366Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-21T11:05:20.149Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"5.1Block本质","level":"1.6.1","depth":2,"next":{"title":"5.2截获变量特性","level":"1.6.2","depth":2,"path":"md/block/5.2.md","ref":"md/block/5.2.md","articles":[]},"previous":{"title":"5、Block","level":"1.6","depth":1,"path":"md/block/5.md","ref":"md/block/5.md","articles":[{"title":"5.1Block本质","level":"1.6.1","depth":2,"path":"md/block/5.1.md","ref":"md/block/5.1.md","articles":[]},{"title":"5.2截获变量特性","level":"1.6.2","depth":2,"path":"md/block/5.2.md","ref":"md/block/5.2.md","articles":[]},{"title":"5.3内存管理","level":"1.6.3","depth":2,"path":"md/block/5.3.md","ref":"md/block/5.3.md","articles":[]},{"title":"5.4循环引用","level":"1.6.4","depth":2,"path":"md/block/5.4.md","ref":"md/block/5.4.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"md/block/5.1.md","mtime":"2019-05-03T13:13:11.362Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-05-03T13:08:40.699Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
